@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8qNwOaFAGq4=",
+  "success": true,
+  "projectFilePath": "A:\\Git\\Debug\\LauncherApp\\LauncherApp\\LauncherApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alexander\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.122\\microsoft.xaml.behaviors.wpf.1.1.122.nupkg.sha512"
+  ],
+  "logs": []
+}
