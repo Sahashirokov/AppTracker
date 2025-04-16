@@ -13,6 +13,7 @@
 
             <!-- Локальные ресурсы -->
             <converters:BoolToStartTextConverter x:Key="BoolToStartTextConverter"/>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
