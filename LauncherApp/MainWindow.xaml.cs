@@ -26,42 +26,6 @@ namespace LauncherApp
         {
             InitializeComponent();
         }
-        //Loaded="MainWindow_OnLoaded"
-       /* private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            _appList = new BindingList<AppChecker>()
-            {
-                new AppChecker(){ Id = "One"},
-                new AppChecker(){ Id = "Two"}
-            };
-            DgAppList.ItemsSource = _appList;
-            
-        }*/
-        /* private void Add_OnClick(object sender, RoutedEventArgs e)
-        {
-            AppChecker appChecker = new AppChecker()
-            {
-                Id = "Hello"
-            };
-            _appList.Add(appChecker);
-        }
-        private void Start_OnClick(object sender, RoutedEventArgs e)
-        {
-          
-            MessageBox.Show("Запущен");
-        }
-
-        private void Edit_OnClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Изменен");
-        }
-
-        private void Delete_OnClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Удален");
-        }*/
-
-
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
