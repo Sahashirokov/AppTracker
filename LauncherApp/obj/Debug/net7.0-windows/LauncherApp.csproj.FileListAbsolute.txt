@@ -25,3 +25,10 @@ A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\LauncherApp.csproj
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\styles\ButtonStyles.baml
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\styles\TextStyles.baml
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\App.baml
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Converters.Wpf.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Core.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Css.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Dom.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Model.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Rendering.Wpf.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Runtime.Wpf.dll

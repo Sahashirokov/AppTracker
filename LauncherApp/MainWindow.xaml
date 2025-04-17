@@ -3,28 +3,81 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svg="http://sharpvectors.codeplex.com/runtime"
         xmlns:local="clr-namespace:LauncherApp"
         xmlns:vm="clr-namespace:LauncherApp.ViewModel"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="AppTracker" Height="800" Width="1240">
+        Height="800" Width="1240"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        
+        >
     <Window.DataContext>
         <vm:VmAppList></vm:VmAppList>
     </Window.DataContext>
-    <Grid>
-        <Menu>
-            <MenuItem Header="Добавить" Height="25" FontSize="16" Command="{Binding AddCommand}"></MenuItem>
-        </Menu>
-        <ListBox 
-            Margin="0 25 0 0" 
-            ItemsSource="{Binding AppCheckers}"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto">
     
+    <Border Background="#010B2F" CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid>
+        <Grid Height="56" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+           <svgc:SvgViewbox Source="assets/svg/menu.svg" Width="24" Height="24"  HorizontalAlignment="Left" Margin="20 0 0 0"/>
+            <TextBlock Grid.Column="0" 
+                       Text="AppTracker" 
+                       FontSize="20"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="54 0 0 0"/>
+            <TextBlock  Grid.Column="0" 
+                        Text="Избранное"
+                        FontSize="20"
+                        Foreground="White"
+                        FontFamily="Arial"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+            <StackPanel 
+                Grid.Column="1"
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                Margin="0 0 20 0">
+                    
+                <!-- Кнопка свернуть -->
+                <Button 
+                    Content="—"
+                    FontSize="20"
+                    Background="Transparent"
+                    Foreground="White"
+                    Padding="10 0"
+                    Click="MinimizeButton_Click"/>
+                    
+                <!-- Кнопка закрыть -->
+                <Button 
+                    Content="×"
+                    FontSize="20"
+                    Background="Transparent"
+                    Foreground="White"
+                    Padding="10 0"
+                    Click="CloseButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <ListBox
+            Margin="0 56 0 0"
+            ItemsSource="{Binding AppCheckers}"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="Transparent">
+        
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListBox.ItemContainerStyle>
-
+        
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="#24262D">
@@ -37,28 +90,28 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
-                        <Button Grid.Column="0" 
-                                Content="{Binding IsRunning,Converter={StaticResource BoolToStartTextConverter}}" 
+        
+                        <Button Grid.Column="0"
+                                Content="{Binding IsRunning,Converter={StaticResource BoolToStartTextConverter}}"
                                 Command="{Binding DataContext.ToggleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
                                 CommandParameter="{Binding }"
                                 Style="{StaticResource CommonStartStyle}"
-                                
+        
                                 />
-
-                        <Button Grid.Column="1" 
+        
+                        <Button Grid.Column="1"
                                 Content="Изменить путь" Command="{Binding DataContext.Edit, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource CommonEditPathStyle}"
                                 CommandParameter="{Binding }"
                                 />
-
-                        <Button Grid.Column="2" 
+        
+                        <Button Grid.Column="2"
                                 Content="Удалить" Command="{Binding DataContext.Remove, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                 CommandParameter="{Binding }"
                                 Style="{StaticResource CommonDeleteStyle}"
                                 />
-
-                        <TextBlock Grid.Column="3"  Padding="2px 10px 8px 2px"> -->
+        
+                        <TextBlock Grid.Column="3"  Padding="2px 10px 8px 2px">
             <Run Text="Название:"
                  FontFamily="Arial"
                  FontSize="16"
@@ -106,25 +159,26 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            
+        
             <ListBox.Template>
-                <ControlTemplate>
+                <ControlTemplate TargetType="ListBox">
                     <Border>
                         <Grid>
                             <ScrollViewer x:Name="ScrollViewer">
                                 <ItemsPresenter/>
                             </ScrollViewer>
                             <TextBlock Text="У вас нет выбранных элементов"
-                                       Visibility="{Binding Items.IsEmpty, 
+                                       Visibility="{Binding Items.IsEmpty,
                                            RelativeSource={RelativeSource AncestorType=ListBox},
                                            Converter={StaticResource BoolToVisibilityConverter}}"  FontFamily="Arial"
                                        FontSize="18"
-                                       FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                            
+                                       FontWeight="Bold" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
+        
                         </Grid>
                     </Border>
                 </ControlTemplate>
             </ListBox.Template>
         </ListBox>
-    </Grid>
+        </Grid>
+    </Border>
 </Window>

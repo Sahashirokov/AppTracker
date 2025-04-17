@@ -17,6 +17,58 @@
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
         ]
+      },
+      "SharpVectors.Wpf/1.8.4.2": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0-windows7.0/SharpVectors.Converters.Wpf.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Css.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Dom.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Model.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Rendering.Wpf.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Runtime.Wpf.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0-windows7.0/SharpVectors.Converters.Wpf.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Css.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Dom.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Model.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Rendering.Wpf.dll": {
+            "related": ".xml"
+          },
+          "lib/net7.0-windows7.0/SharpVectors.Runtime.Wpf.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -42,11 +94,152 @@
         "microsoft.xaml.behaviors.wpf.nuspec",
         "tools/Install.ps1"
       ]
+    },
+    "SharpVectors.Wpf/1.8.4.2": {
+      "sha512": "PNxLkMBJnV8A+6yH9OqOlhLJegvWP/dvh0rAJp2l0kcrR+rB4R2tQ9vhUqka+UilH4atN8T6zvjDOizVyfz2Ng==",
+      "type": "package",
+      "path": "sharpvectors.wpf/1.8.4.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "docs/SharpVectors.Wpf.md",
+        "images/SharpVectors64.png",
+        "lib/License.txt",
+        "lib/net40/SharpVectors.Converters.Wpf.dll",
+        "lib/net40/SharpVectors.Converters.Wpf.xml",
+        "lib/net40/SharpVectors.Core.dll",
+        "lib/net40/SharpVectors.Core.xml",
+        "lib/net40/SharpVectors.Css.dll",
+        "lib/net40/SharpVectors.Css.xml",
+        "lib/net40/SharpVectors.Dom.dll",
+        "lib/net40/SharpVectors.Dom.xml",
+        "lib/net40/SharpVectors.Model.dll",
+        "lib/net40/SharpVectors.Model.xml",
+        "lib/net40/SharpVectors.Rendering.Wpf.dll",
+        "lib/net40/SharpVectors.Rendering.Wpf.xml",
+        "lib/net40/SharpVectors.Runtime.Wpf.dll",
+        "lib/net40/SharpVectors.Runtime.Wpf.xml",
+        "lib/net45/SharpVectors.Converters.Wpf.dll",
+        "lib/net45/SharpVectors.Converters.Wpf.xml",
+        "lib/net45/SharpVectors.Core.dll",
+        "lib/net45/SharpVectors.Core.xml",
+        "lib/net45/SharpVectors.Css.dll",
+        "lib/net45/SharpVectors.Css.xml",
+        "lib/net45/SharpVectors.Dom.dll",
+        "lib/net45/SharpVectors.Dom.xml",
+        "lib/net45/SharpVectors.Model.dll",
+        "lib/net45/SharpVectors.Model.xml",
+        "lib/net45/SharpVectors.Rendering.Wpf.dll",
+        "lib/net45/SharpVectors.Rendering.Wpf.xml",
+        "lib/net45/SharpVectors.Runtime.Wpf.dll",
+        "lib/net45/SharpVectors.Runtime.Wpf.xml",
+        "lib/net46/SharpVectors.Converters.Wpf.dll",
+        "lib/net46/SharpVectors.Converters.Wpf.xml",
+        "lib/net46/SharpVectors.Core.dll",
+        "lib/net46/SharpVectors.Core.xml",
+        "lib/net46/SharpVectors.Css.dll",
+        "lib/net46/SharpVectors.Css.xml",
+        "lib/net46/SharpVectors.Dom.dll",
+        "lib/net46/SharpVectors.Dom.xml",
+        "lib/net46/SharpVectors.Model.dll",
+        "lib/net46/SharpVectors.Model.xml",
+        "lib/net46/SharpVectors.Rendering.Wpf.dll",
+        "lib/net46/SharpVectors.Rendering.Wpf.xml",
+        "lib/net46/SharpVectors.Runtime.Wpf.dll",
+        "lib/net46/SharpVectors.Runtime.Wpf.xml",
+        "lib/net47/SharpVectors.Converters.Wpf.dll",
+        "lib/net47/SharpVectors.Converters.Wpf.xml",
+        "lib/net47/SharpVectors.Core.dll",
+        "lib/net47/SharpVectors.Core.xml",
+        "lib/net47/SharpVectors.Css.dll",
+        "lib/net47/SharpVectors.Css.xml",
+        "lib/net47/SharpVectors.Dom.dll",
+        "lib/net47/SharpVectors.Dom.xml",
+        "lib/net47/SharpVectors.Model.dll",
+        "lib/net47/SharpVectors.Model.xml",
+        "lib/net47/SharpVectors.Rendering.Wpf.dll",
+        "lib/net47/SharpVectors.Rendering.Wpf.xml",
+        "lib/net47/SharpVectors.Runtime.Wpf.dll",
+        "lib/net47/SharpVectors.Runtime.Wpf.xml",
+        "lib/net48/SharpVectors.Converters.Wpf.dll",
+        "lib/net48/SharpVectors.Converters.Wpf.xml",
+        "lib/net48/SharpVectors.Core.dll",
+        "lib/net48/SharpVectors.Core.xml",
+        "lib/net48/SharpVectors.Css.dll",
+        "lib/net48/SharpVectors.Css.xml",
+        "lib/net48/SharpVectors.Dom.dll",
+        "lib/net48/SharpVectors.Dom.xml",
+        "lib/net48/SharpVectors.Model.dll",
+        "lib/net48/SharpVectors.Model.xml",
+        "lib/net48/SharpVectors.Rendering.Wpf.dll",
+        "lib/net48/SharpVectors.Rendering.Wpf.xml",
+        "lib/net48/SharpVectors.Runtime.Wpf.dll",
+        "lib/net48/SharpVectors.Runtime.Wpf.xml",
+        "lib/net6.0-windows7.0/SharpVectors.Converters.Wpf.dll",
+        "lib/net6.0-windows7.0/SharpVectors.Converters.Wpf.xml",
+        "lib/net6.0-windows7.0/SharpVectors.Core.dll",
+        "lib/net6.0-windows7.0/SharpVectors.Core.xml",
+        "lib/net6.0-windows7.0/SharpVectors.Css.dll",
+        "lib/net6.0-windows7.0/SharpVectors.Css.xml",
+        "lib/net6.0-windows7.0/SharpVectors.Dom.dll",
+        "lib/net6.0-windows7.0/SharpVectors.Dom.xml",
+        "lib/net6.0-windows7.0/SharpVectors.Model.dll",
+        "lib/net6.0-windows7.0/SharpVectors.Model.xml",
+        "lib/net6.0-windows7.0/SharpVectors.Rendering.Wpf.dll",
+        "lib/net6.0-windows7.0/SharpVectors.Rendering.Wpf.xml",
+        "lib/net6.0-windows7.0/SharpVectors.Runtime.Wpf.dll",
+        "lib/net6.0-windows7.0/SharpVectors.Runtime.Wpf.xml",
+        "lib/net7.0-windows7.0/SharpVectors.Converters.Wpf.dll",
+        "lib/net7.0-windows7.0/SharpVectors.Converters.Wpf.xml",
+        "lib/net7.0-windows7.0/SharpVectors.Core.dll",
+        "lib/net7.0-windows7.0/SharpVectors.Core.xml",
+        "lib/net7.0-windows7.0/SharpVectors.Css.dll",
+        "lib/net7.0-windows7.0/SharpVectors.Css.xml",
+        "lib/net7.0-windows7.0/SharpVectors.Dom.dll",
+        "lib/net7.0-windows7.0/SharpVectors.Dom.xml",
+        "lib/net7.0-windows7.0/SharpVectors.Model.dll",
+        "lib/net7.0-windows7.0/SharpVectors.Model.xml",
+        "lib/net7.0-windows7.0/SharpVectors.Rendering.Wpf.dll",
+        "lib/net7.0-windows7.0/SharpVectors.Rendering.Wpf.xml",
+        "lib/net7.0-windows7.0/SharpVectors.Runtime.Wpf.dll",
+        "lib/net7.0-windows7.0/SharpVectors.Runtime.Wpf.xml",
+        "lib/net8.0-windows7.0/SharpVectors.Converters.Wpf.dll",
+        "lib/net8.0-windows7.0/SharpVectors.Converters.Wpf.xml",
+        "lib/net8.0-windows7.0/SharpVectors.Core.dll",
+        "lib/net8.0-windows7.0/SharpVectors.Core.xml",
+        "lib/net8.0-windows7.0/SharpVectors.Css.dll",
+        "lib/net8.0-windows7.0/SharpVectors.Css.xml",
+        "lib/net8.0-windows7.0/SharpVectors.Dom.dll",
+        "lib/net8.0-windows7.0/SharpVectors.Dom.xml",
+        "lib/net8.0-windows7.0/SharpVectors.Model.dll",
+        "lib/net8.0-windows7.0/SharpVectors.Model.xml",
+        "lib/net8.0-windows7.0/SharpVectors.Rendering.Wpf.dll",
+        "lib/net8.0-windows7.0/SharpVectors.Rendering.Wpf.xml",
+        "lib/net8.0-windows7.0/SharpVectors.Runtime.Wpf.dll",
+        "lib/net8.0-windows7.0/SharpVectors.Runtime.Wpf.xml",
+        "lib/netcoreapp3.1/SharpVectors.Converters.Wpf.dll",
+        "lib/netcoreapp3.1/SharpVectors.Converters.Wpf.xml",
+        "lib/netcoreapp3.1/SharpVectors.Core.dll",
+        "lib/netcoreapp3.1/SharpVectors.Core.xml",
+        "lib/netcoreapp3.1/SharpVectors.Css.dll",
+        "lib/netcoreapp3.1/SharpVectors.Css.xml",
+        "lib/netcoreapp3.1/SharpVectors.Dom.dll",
+        "lib/netcoreapp3.1/SharpVectors.Dom.xml",
+        "lib/netcoreapp3.1/SharpVectors.Model.dll",
+        "lib/netcoreapp3.1/SharpVectors.Model.xml",
+        "lib/netcoreapp3.1/SharpVectors.Rendering.Wpf.dll",
+        "lib/netcoreapp3.1/SharpVectors.Rendering.Wpf.xml",
+        "lib/netcoreapp3.1/SharpVectors.Runtime.Wpf.dll",
+        "lib/netcoreapp3.1/SharpVectors.Runtime.Wpf.xml",
+        "sharpvectors.wpf.1.8.4.2.nupkg.sha512",
+        "sharpvectors.wpf.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
-      "Microsoft.Xaml.Behaviors.Wpf >= 1.1.122"
+      "Microsoft.Xaml.Behaviors.Wpf >= 1.1.122",
+      "SharpVectors.Wpf >= 1.8.4.2"
     ]
   },
   "packageFolders": {
@@ -97,6 +290,10 @@
           "Microsoft.Xaml.Behaviors.Wpf": {
             "target": "Package",
             "version": "[1.1.122, )"
+          },
+          "SharpVectors.Wpf": {
+            "target": "Package",
+            "version": "[1.8.4.2, )"
           }
         },
         "imports": [

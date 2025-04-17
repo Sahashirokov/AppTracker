@@ -9,6 +9,14 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
+      <PackageReference Include="SharpVectors.Wpf" Version="1.8.4.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="assets\svg\menu.svg" />
+      <Resource Include="assets\svg\menu.svg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>
