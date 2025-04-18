@@ -17,6 +17,14 @@
       <Resource Include="assets\svg\menu.svg">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
+      <None Remove="assets\svg\minus.svg" />
+      <Resource Include="assets\svg\minus.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="assets\svg\close.svg" />
+      <Resource Include="assets\svg\close.svg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>

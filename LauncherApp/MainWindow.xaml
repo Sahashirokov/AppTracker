@@ -13,28 +13,57 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        
         >
     <Window.DataContext>
         <vm:VmAppList></vm:VmAppList>
     </Window.DataContext>
     
     <Border Background="#010B2F" CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid>
-        <Grid Height="56" VerticalAlignment="Top">
+       <Grid>
+        <!-- Заголовочная панель -->
+        <Grid Height="56" VerticalAlignment="Top" Background="#010B2F">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             
-           <svgc:SvgViewbox Source="assets/svg/menu.svg" Width="24" Height="24"  HorizontalAlignment="Left" Margin="20 0 0 0"/>
-            <TextBlock Grid.Column="0" 
-                       Text="AppTracker" 
-                       FontSize="20"
-                       Foreground="White"
-                       VerticalAlignment="Center"
-                       Margin="54 0 0 0"/>
-            <TextBlock  Grid.Column="0" 
+            <StackPanel 
+                Grid.Column="1"
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                Margin="0 0 10 0">
+                
+                <Button 
+                    Style="{StaticResource MinimizeButtonStyle}"
+                    Content="/assets/svg/minus.svg"
+                    Click="MinimizeButton_Click"
+                    Margin="0 0 10 0"/>
+                
+                <Button 
+                    Style="{StaticResource CloseButtonStyle}"
+                    Content="/assets/svg/close.svg"
+                    Click="CloseButton_Click"/>
+            </StackPanel>
+            <Border 
+                Grid.Column="0"
+                Background="Transparent"
+                MouseDown="HeaderBorder_MouseDown">
+                <Grid>
+                    <svgc:SvgViewbox 
+                        Source="assets/svg/menu.svg" 
+                        Width="24" 
+                        Height="24"  
+                        HorizontalAlignment="Left" 
+                        Margin="20 0 0 0"/>
+                    
+                    <TextBlock 
+                        Text="AppTracker" 
+                        FontSize="20"
+                        Foreground="White"
+                        VerticalAlignment="Center"
+                        Margin="54 0 0 0"/>
+                    
+                    <TextBlock  
                         Text="Избранное"
                         FontSize="20"
                         Foreground="White"
@@ -42,30 +71,8 @@
                         FontWeight="Bold"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"/>
-            <StackPanel 
-                Grid.Column="1"
-                Orientation="Horizontal"
-                VerticalAlignment="Center"
-                Margin="0 0 20 0">
-                    
-                <!-- Кнопка свернуть -->
-                <Button 
-                    Content="—"
-                    FontSize="20"
-                    Background="Transparent"
-                    Foreground="White"
-                    Padding="10 0"
-                    Click="MinimizeButton_Click"/>
-                    
-                <!-- Кнопка закрыть -->
-                <Button 
-                    Content="×"
-                    FontSize="20"
-                    Background="Transparent"
-                    Foreground="White"
-                    Padding="10 0"
-                    Click="CloseButton_Click"/>
-            </StackPanel>
+                </Grid>
+            </Border>
         </Grid>
         <ListBox
             Margin="0 56 0 0"
