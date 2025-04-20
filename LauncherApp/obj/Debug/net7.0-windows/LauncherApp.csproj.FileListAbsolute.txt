@@ -32,3 +32,10 @@ A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Dom.d
 A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Model.dll
 A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Rendering.Wpf.dll
 A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\SharpVectors.Runtime.Wpf.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\AllAppsPage.g.cs
+A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\FavoritePage.g.cs
+A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\AllAppsPage.baml
+A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\FavoritePage.baml

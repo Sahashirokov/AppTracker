@@ -5,6 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
+using LauncherApp.MVVM.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LauncherApp
 {
@@ -13,5 +16,20 @@ namespace LauncherApp
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.Init();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Startup failed: {ex}");
+                throw;
+            }
+               
+                base.OnStartup(e);
+           
+        }
     }
 }

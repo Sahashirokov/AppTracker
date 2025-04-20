@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 A:\Git\Debug\LauncherApp\LauncherApp\App.xaml
-4-503004106
+51769811495
 
-11955645973
-206-229550847
-MainWindow.xaml;styles\ButtonStyles.xaml;styles\TextStyles.xaml;View\UserControl.xaml;
+191738003349
+209562741973
+MainWindow.xaml;Pages\AllAppsPage.xaml;Pages\FavoritePage.xaml;styles\ButtonStyles.xaml;styles\TextStyles.xaml;
 
-True
+False
 

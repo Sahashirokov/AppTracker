@@ -1,0 +1,14 @@
+﻿<Page x:Class="LauncherApp.Pages.AllAppsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LauncherApp.Pages"
+      mc:Ignorable="d"
+      Title="AllAppsPage" 
+      DataContext="{Binding AllAppsViewModel,Source={StaticResource ViewModelLocator}}"
+      >
+    <Grid Background="#010B2F">
+        <TextBlock Foreground="Azure" FontSize="20">All Apps</TextBlock>
+    </Grid>
+</Page>

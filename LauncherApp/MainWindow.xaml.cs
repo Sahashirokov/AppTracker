@@ -24,18 +24,27 @@ namespace LauncherApp
     {
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+               
         }
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
-
+        
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
+        
         private void HeaderBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
