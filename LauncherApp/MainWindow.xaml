@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:svg="http://sharpvectors.codeplex.com/runtime"
-        xmlns:local="clr-namespace:LauncherApp"
-        xmlns:vm="clr-namespace:LauncherApp.ViewModel"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        
         mc:Ignorable="d"
         Height="800" Width="1240"
         WindowStyle="None"
@@ -20,8 +19,8 @@
     <!--     <vm:VmAppList></vm:VmAppList> -->
     <!-- </Window.DataContext> -->
     
-    <Border Background="#010B2F" CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-       <Grid>
+    <Border Background="#010B2F" CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <Grid>
         <!-- Заголовочная панель -->
         <Grid Height="56" VerticalAlignment="Top" Background="#010B2F">
             <Grid.ColumnDefinitions>
@@ -38,18 +37,24 @@
                 <Button 
                     Style="{StaticResource MinimizeButtonStyle}"
                     Content="/assets/svg/minus.svg"
-                    Click="MinimizeButton_Click"
+                    Command="{Binding MinimizeCommand}"
                     Margin="0 0 10 0"/>
                 
                 <Button 
                     Style="{StaticResource CloseButtonStyle}"
                     Content="/assets/svg/close.svg"
-                    Click="CloseButton_Click"/>
+                    Command="{Binding CloseCommand}"/>
             </StackPanel>
             <Border 
                 Grid.Column="0"
-                Background="Transparent"
-                MouseDown="HeaderBorder_MouseDown">
+                Background="Transparent" x:Name="HeaderBorder">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction 
+                            Command="{Binding DragMoveCommand}"
+                            PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <Grid>
                     <svgc:SvgViewbox 
                         Source="assets/svg/menu.svg" 
@@ -66,7 +71,7 @@
                         Margin="54 0 0 0"/>
                     
                     <TextBlock  
-                        Text="Избранное"
+                        Text="{Binding Title}"
                         FontSize="20"
                         Foreground="White"
                         FontFamily="Arial"

@@ -15,6 +15,7 @@ public class ViewModelLocator
     {
         var services = new ServiceCollection();
         
+        services.AddSingleton<IWindowService, WindowService>();
         services.AddSingleton<PageServices>();
         services.AddSingleton<INavigationService, NavigationService>();
        
@@ -34,5 +35,4 @@ public class ViewModelLocator
     public MainViewModel MainViewModel => _serviceProvider.GetRequiredService<MainViewModel>();
     public VmAppList VmAppList => _serviceProvider.GetRequiredService<VmAppList>();
     public AllAppsViewModel AllAppsViewModel => _serviceProvider.GetRequiredService<AllAppsViewModel>();
-    // public static object Resolve(Type type) => _serviceProvider.GetService(type);
 }

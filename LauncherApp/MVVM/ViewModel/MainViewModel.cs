@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Windows;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LauncherApp.Command;
-using LauncherApp.Model;
 using LauncherApp.MVVM.Model;
 using LauncherApp.Pages;
 using LauncherApp.Services;
@@ -13,9 +13,17 @@ namespace LauncherApp.MVVM.ViewModel;
 public class MainViewModel : BaseVm
 {
     private readonly INavigationService _navigation;
-   // private readonly IWindowService _windowService;
+    private readonly IWindowService _windowService;
     private Page _pageSource;
     
+    private readonly Dictionary<Type, string> _pageTitles = new()
+    {
+        { typeof(FavoritePage), "Избранное" },
+        { typeof(AllAppsPage), "Все приложения" }
+    };
+    public ICommand MinimizeCommand { get; }
+    public ICommand CloseCommand { get; }
+    public ICommand DragMoveCommand { get; }
     public Page PageSource
     {
         get => _pageSource;
@@ -23,6 +31,7 @@ public class MainViewModel : BaseVm
         {
             _pageSource = value;
             OnPropertyChanged();
+            UpdateTitle();
         }
     }
     private string _title;
@@ -34,34 +43,45 @@ public class MainViewModel : BaseVm
         {
             _title = value;
             OnPropertyChanged();
+           
         }
     }
 
-    public MainViewModel(INavigationService navigation,PageServices pageServices)
+    public MainViewModel(INavigationService navigation,PageServices pageServices,IWindowService windowService)
     {
         _navigation = navigation;
-        //_windowService = windowService;
+        _windowService = windowService;
         pageServices.OnPageChanged += page => PageSource = page;
+        MinimizeCommand = new DelegateCommand(() => _windowService.Minimize());
+        CloseCommand = new DelegateCommand(() => _windowService.Close());
+        DragMoveCommand = new DelegateCommand<MouseButtonEventArgs>(e =>
+        {
+            if (e == null) return;
+            if (e.ChangedButton != MouseButton.Left) return;
+            if (e.ClickCount != 1) return;
+    
+            try
+            {
+                _windowService.DragMove();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"DragMove error: {ex.Message}");
+            }
+        });
         _navigation.NavigateTo<FavoritePage>();
-        NavigateToInitial();
     }
-
-    private void NavigateToInitial()
+    
+    private void UpdateTitle()
     {
-        _navigation.NavigateTo<FavoritePage>();
+        if (PageSource != null && _pageTitles.TryGetValue(PageSource.GetType(), out var title))
+            Title = title;
     }
-
     public ICommand NavigateToFavoriteCommand => new DelegateCommand(() => 
         _navigation.NavigateTo<FavoritePage>());
 
-    public ICommand NavigateToAllAppsCommand => new DelegateCommand<MainViewModel>((item) =>
-        {
-            _navigation.NavigateTo<AllAppsPage>();
-            Console.WriteLine(item);
-        }
+    public ICommand NavigateToAllAppsCommand => new DelegateCommand(() =>
+            _navigation.NavigateTo<AllAppsPage>()
         );
-
-    // public ICommand MinimizeCommand => new DelegateCommand(() => _windowService.Minimize());
-    // public ICommand CloseCommand => new DelegateCommand(() => _windowService.Close());
-    // public ICommand DragMoveCommand => new DelegateCommand(() => _windowService.DragMove());
+    
 }
