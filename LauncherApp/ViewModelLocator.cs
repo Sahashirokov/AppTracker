@@ -21,6 +21,7 @@ public class ViewModelLocator
        
         
         services.AddTransient<MainViewModel>();
+        services.AddTransient<HeaderViewModel>();
         services.AddTransient<AllAppsPage>();
         services.AddTransient<FavoritePage>();
         
@@ -35,4 +36,5 @@ public class ViewModelLocator
     public MainViewModel MainViewModel => _serviceProvider.GetRequiredService<MainViewModel>();
     public VmAppList VmAppList => _serviceProvider.GetRequiredService<VmAppList>();
     public AllAppsViewModel AllAppsViewModel => _serviceProvider.GetRequiredService<AllAppsViewModel>();
+    public HeaderViewModel HeaderViewModel => _serviceProvider.GetRequiredService<HeaderViewModel>();
 }

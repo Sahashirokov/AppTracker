@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        
+        xmlns:control="clr-namespace:LauncherApp.Control"
+
         mc:Ignorable="d"
         Height="800" Width="1240"
         WindowStyle="None"
@@ -21,74 +22,7 @@
     
     <Border Background="#010B2F" CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <Grid>
-        <!-- Заголовочная панель -->
-        <Grid Height="56" VerticalAlignment="Top" Background="#010B2F">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-           
-            <StackPanel 
-                Grid.Column="1"
-                Orientation="Horizontal"
-                VerticalAlignment="Center"
-                Margin="0 0 10 0">
-                
-                <Button 
-                    Style="{StaticResource MinimizeButtonStyle}"
-                    Content="/assets/svg/minus.svg"
-                    Command="{Binding MinimizeCommand}"
-                    Margin="0 0 10 0"/>
-                
-                <Button 
-                    Style="{StaticResource CloseButtonStyle}"
-                    Content="/assets/svg/close.svg"
-                    Command="{Binding CloseCommand}"/>
-            </StackPanel>
-            <Border 
-                Grid.Column="0"
-                Background="Transparent" x:Name="HeaderBorder">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction 
-                            Command="{Binding DragMoveCommand}"
-                            PassEventArgsToCommand="True"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <Grid>
-                    <svgc:SvgViewbox 
-                        Source="assets/svg/menu.svg" 
-                        Width="24" 
-                        Height="24"  
-                        HorizontalAlignment="Left" 
-                        Margin="20 0 0 0"/>
-                    
-                    <TextBlock 
-                        Text="AppTracker" 
-                        FontSize="20"
-                        Foreground="White"
-                        VerticalAlignment="Center"
-                        Margin="54 0 0 0"/>
-                    
-                    <TextBlock  
-                        Text="{Binding Title}"
-                        FontSize="20"
-                        Foreground="White"
-                        FontFamily="Arial"
-                        FontWeight="Bold"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Panel.ZIndex="1">
-                        <Button Content="Избранное" 
-                                Command="{Binding NavigateToFavoriteCommand}" Style="{StaticResource NavButtonStyle}"  CommandParameter="{Binding }"/>
-                        <Button Content="Все приложения" 
-                                Command="{Binding NavigateToAllAppsCommand}" Style="{StaticResource NavButtonStyle}"
-                                CommandParameter="{Binding }"
-                                />
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </Grid>
+        <control:HeaderControl/>
         <Frame Margin="0 56 0 0" Content="{Binding PageSource}" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Border>

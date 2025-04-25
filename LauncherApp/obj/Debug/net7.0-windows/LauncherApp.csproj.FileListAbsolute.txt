@@ -39,3 +39,5 @@ A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\AllAppsPage.
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\FavoritePage.g.cs
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\AllAppsPage.baml
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Pages\FavoritePage.baml
+A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Control\HeaderControl.g.cs
+A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\Control\HeaderControl.baml

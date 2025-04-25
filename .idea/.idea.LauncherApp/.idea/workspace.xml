@@ -8,21 +8,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc8285a8-bac6-47b2-8e1b-7228c0ae8d8c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LauncherApp/Control/HeaderControl.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LauncherApp/Control/HeaderControl.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/HeaderViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/MainViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/MainViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/Pages/FavoritePage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Pages/FavoritePage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/ViewModelLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/ViewModelLocator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.g.resources" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.g.resources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp_MarkupCompile.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp_MarkupCompile.lref" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MainWindow.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MainWindow.baml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MainWindow.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MainWindow.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MainWindow.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MainWindow.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/Pages/FavoritePage.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/Pages/FavoritePage.baml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/Pages/FavoritePage.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/Pages/FavoritePage.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/Pages/FavoritePage.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/Pages/FavoritePage.g.i.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/rider.project.model.nuget.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +154,8 @@
       <workItem from="1745143092677" duration="9618000" />
       <workItem from="1745162444757" duration="2015000" />
       <workItem from="1745170293654" duration="1079000" />
+      <workItem from="1745433334297" duration="1659000" />
+      <workItem from="1745579882900" duration="4174000" />
     </task>
     <task id="LOCAL-00001" summary="git init Start Project App Tracker">
       <option name="closed" value="true" />
