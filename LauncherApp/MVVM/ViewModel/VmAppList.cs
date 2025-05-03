@@ -7,85 +7,59 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using LauncherApp.Command;
 using LauncherApp.Model;
 using LauncherApp.MVVM.Model;
+using LauncherApp.Services;
+using MediatR;
 
 namespace LauncherApp.ViewModel;
 
 public class VmAppList:BaseVm
 {
-    public ObservableCollection<AppChecker> AppCheckers { get; set; }
-    public VmAppList()
+    private readonly IFavoriteAppService _favoriteAppService;
+     public ObservableCollection<AppM> AppM { get; set; }
+    private bool _isLoading;
+    public VmAppList(IFavoriteAppService favoriteAppService)
     {
-        AppCheckers = new ObservableCollection<AppChecker>
-        {
-            new AppChecker(){ Id = "1"},
-            new AppChecker(){ Id = "2"},
-            new AppChecker(){ Id = "3"},
-        };
-        AppCheckers.CollectionChanged += (s, e) => 
-        {
-            for (int i = 0; i < AppCheckers.Count; i++)
-            {
-                AppCheckers[i].Id = $"{i + 1}";
-            }
-        };
+        _favoriteAppService = favoriteAppService;
+        AppM = new ObservableCollection<AppM>();
+        LoadAppsCommand = new DelegateCommand(async () => await LoadApps());
+        _ = LoadApps();
     }
-    public ICommand ToggleCommand => new DelegateCommand<AppChecker>(item => 
-    {
-        item.IsRunning = !item.IsRunning;
-    });
-    public ICommand AddCommand => new DelegateCommand(
-        () => 
-        {
-            try
-            {
-                Console.WriteLine("Добавление элемента...");
-
-                var newItem = new AppChecker();
-                
-               
-                AppCheckers.Add(newItem);
-            
-                Console.WriteLine($"Элемент '{newItem.Id}' успешно добавлен. Всего элементов: {AppCheckers.Count}");
-                OnPropertyChanged("AddCommand");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка при добавлении: {ex.Message}");
-            }
-        });
-    private string? _name;
+    public DelegateCommand LoadAppsCommand { get; }
     
-    public string Name
+    public bool IsLoading
     {
-        get => _name;
-        set
+        get => _isLoading;
+        set => SetField(ref _isLoading, value);
+    }
+
+    private async Task LoadApps()
+    {
+        try
         {
-            if (_name != value)
-            {
-                _name = value;
-                OnPropertyChanged("Id");
-            }
+            IsLoading = true;
+            await Task.Delay(3500);
+            var result =  await _favoriteAppService.LoadAppsAsync();
+            Console.WriteLine(result.Count);
+             AppM.Clear();
+             foreach (var item in result)
+             {
+                 AppM.Add(item);
+             }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+            throw;
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
-    
-    public ICommand Edit
-    {
-        get
-        {
-            return new DelegateCommand<AppChecker>((obj =>
-            {
-                MessageBox.Show("Изменен");
-            }));
-        }
-    }
-    public DelegateCommand<AppChecker> Remove => new DelegateCommand<AppChecker>((item) =>
-    {
-        AppCheckers.Remove(item);
-    },(item)=>item != null);
-
 }

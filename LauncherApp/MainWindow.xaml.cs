@@ -21,5 +21,10 @@ namespace LauncherApp
             }
 
         }
+
+        private void HeaderControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

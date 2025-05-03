@@ -9,11 +9,15 @@
             <!-- Внешние стили -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/styles/LoadingSpinner.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:ViewModelLocator x:Key="ViewModelLocator" />
             <!-- Локальные ресурсы -->
             <converters:BoolToStartTextConverter x:Key="BoolToStartTextConverter"/>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            
+            <converters:AllTrueToVisibilityConverter x:Key="AllTrueToVisibilityConverter"/>
+            <converters:InvertBoolConverter x:Key="InvertBoolConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

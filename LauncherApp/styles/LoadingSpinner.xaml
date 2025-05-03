@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:converters="clr-namespace:LauncherApp.Converters">
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+    <Style x:Key="ModernLoaderStyle" TargetType="Control">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Control">
+                    <Grid VerticalAlignment="Center" 
+                          HorizontalAlignment="Center"
+                          Name="LoaderGrid">
+                        
+                        <!-- Фон -->
+                        <!-- <Border Background="#88000000"  -->
+                        <!--         CornerRadius="8" -->
+                        <!--         Width="120" -->
+                        <!--         Height="120"/> -->
+                        
+                        <!-- Вращающийся элемент -->
+                        <Viewbox Width="60" Height="60">
+                            <Grid>
+                                <!-- Основной контейнер -->
+                                <Grid x:Name="SpinnerContainer" 
+                                      Width="40" 
+                                      Height="40"
+                                      RenderTransformOrigin="0.5,0.5">
+                                    
+                                    <!-- Вращающееся кольцо -->
+                                    <Ellipse Name="RotatingElement"
+                                             Width="40" 
+                                             Height="40"
+                                             StrokeThickness="4"
+                                             StrokeDashArray="20"
+                                             Stroke="{TemplateBinding Foreground}"
+                                             RenderTransformOrigin="0.5,0.5">
+                                        <Ellipse.RenderTransform>
+                                            <RotateTransform Angle="0"/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    
+                                </Grid>
+                            </Grid>
+                        </Viewbox>
+                        
+                        <TextBlock Text="{TemplateBinding Tag}" 
+                                   Margin="0 70 0 0"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"/>
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <!-- Анимация ТОЛЬКО кольца -->
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="RotatingElement"
+                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                            From="0" 
+                                            To="360" 
+                                            Duration="0:0:1.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace LauncherApp.MVVM.Model;
 
-public class BaseVm:INotifyPropertyChanged
+public class BaseVm:INotifyPropertyChanged, IDisposable
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -19,5 +20,10 @@ public class BaseVm:INotifyPropertyChanged
         field = value;
         OnPropertyChanged(propertyName);
         return true;
+    }
+
+    public virtual void Dispose()
+    {
+        throw new NotImplementedException();
     }
 }

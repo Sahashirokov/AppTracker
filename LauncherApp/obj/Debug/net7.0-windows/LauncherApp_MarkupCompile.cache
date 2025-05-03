@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 A:\Git\Debug\LauncherApp\LauncherApp\App.xaml
-6-1998461098
+72110468619
 
-211438967133
-209-1266403433
-Control\HeaderControl.xaml;MainWindow.xaml;Pages\AllAppsPage.xaml;Pages\FavoritePage.xaml;styles\ButtonStyles.xaml;styles\TextStyles.xaml;
+42-1950288499
+227-868297240
+MainWindow.xaml;MVVM\View\Control\HeaderControl.xaml;MVVM\View\Pages\AllAppsPage.xaml;MVVM\View\Pages\FavoritePage.xaml;styles\ButtonStyles.xaml;styles\LoadingSpinner.xaml;styles\TextStyles.xaml;
 
 False
 

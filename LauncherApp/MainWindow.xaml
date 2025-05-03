@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:control="clr-namespace:LauncherApp.Control"
+        xmlns:control1="clr-namespace:LauncherApp.MVVM.View.Control"
 
         mc:Ignorable="d"
         Height="800" Width="1240"
@@ -13,7 +13,7 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        Title="AppTracker"
+        Title="{Binding Title}"
         DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
         >
     <!-- <Window.DataContext> -->
@@ -22,7 +22,7 @@
     
     <Border Background="#010B2F" CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <Grid>
-        <control:HeaderControl/>
+        <control1:HeaderControl/>
         <Frame Margin="0 56 0 0" Content="{Binding PageSource}" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Border>

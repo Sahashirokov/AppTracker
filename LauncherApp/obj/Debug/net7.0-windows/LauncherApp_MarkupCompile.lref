@@ -1,7 +1,8 @@
 ﻿
 FA:\Git\Debug\LauncherApp\LauncherApp\App.xaml;;
-FA:\Git\Debug\LauncherApp\LauncherApp\Control\HeaderControl.xaml;;
-FA:\Git\Debug\LauncherApp\LauncherApp\Pages\AllAppsPage.xaml;;
-FA:\Git\Debug\LauncherApp\LauncherApp\Pages\FavoritePage.xaml;;
 FA:\Git\Debug\LauncherApp\LauncherApp\MainWindow.xaml;;
+FA:\Git\Debug\LauncherApp\LauncherApp\MVVM\View\Control\HeaderControl.xaml;;
+FA:\Git\Debug\LauncherApp\LauncherApp\MVVM\View\Pages\AllAppsPage.xaml;;
+FA:\Git\Debug\LauncherApp\LauncherApp\MVVM\View\Pages\FavoritePage.xaml;;
+FA:\Git\Debug\LauncherApp\LauncherApp\styles\LoadingSpinner.xaml;;
 
