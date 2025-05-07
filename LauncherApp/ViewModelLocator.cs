@@ -35,7 +35,7 @@ public class ViewModelLocator
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddScoped<IFavoriteAppRepository, AppFavoriteRepository>();
         services.AddTransient<IFavoriteAppService, FavoriteAppService>();
-        
+        services.AddSingleton<IApplicationMonitorService, ApplicationMonitorService>();
         
         services.AddSingleton<AppStateService>();
         

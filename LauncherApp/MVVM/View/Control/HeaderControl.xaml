@@ -8,7 +8,7 @@
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=HeaderViewModel}"
              >
-    <Grid Background="#010B2F" Height="56" VerticalAlignment="Top">
+    <Grid Background="#010B2F" Height="56" VerticalAlignment="Top" >
          <Grid Height="56" VerticalAlignment="Top" Background="#010B2F">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -77,4 +77,4 @@
             </Border>
         </Grid>
     </Grid>
-</UserControl>
+</UserControl >

@@ -43,7 +43,7 @@ public class VmAppList:BaseVm
         try
         {
             IsLoading = true;
-            await Task.Delay(3500);
+           // await Task.Delay(3500);
             var result =  await _favoriteAppService.LoadAppsAsync();
             Console.WriteLine(result.Count);
              AppM.Clear();

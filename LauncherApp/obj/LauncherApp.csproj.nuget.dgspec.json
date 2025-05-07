@@ -74,6 +74,10 @@
             "SharpVectors.Wpf": {
               "target": "Package",
               "version": "[1.8.4.2, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

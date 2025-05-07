@@ -9,6 +9,43 @@
       DataContext="{Binding AllAppsViewModel,Source={StaticResource ViewModelLocator}}"
       >
     <Grid Background="#010B2F">
-        <TextBlock Foreground="Azure" FontSize="20">All Apps</TextBlock>
+        <ListView ItemsSource="{Binding Applications}" 
+                  HorizontalContentAlignment="Stretch"
+                  VirtualizingPanel.IsVirtualizing="True" Background="#040E27" BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5" Background="#24262D">
+                        <Image Source="{Binding Icon}" Width="42" Height="42" Margin="10 0 0 0"/>
+                        <StackPanel Margin="10,0,2,2" Orientation="Vertical" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Добавить в избранное" Style="{StaticResource NavButtonStyle}"></Button>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal " VerticalAlignment="Center">
+                                        <TextBlock Text="Название: " FontSize="16" FontFamily="Aria" Foreground="White"/>
+                                        <TextBlock FontWeight="Medium" FontSize="14" FontFamily="Aria" Foreground="#C6C6C6"  Padding="0 2px 24 0" VerticalAlignment="Center">
+                                            <Run Text="{Binding Name}"/>
+                                            <Run Text=" — "/>
+                                            <Run Text="{Binding WindowTitle}"></Run>
+                                            <!-- <Run Text=" PATH: "/> -->
+                                            <!-- <Run Text="{Binding Path=Path}"></Run> -->
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="Активен: " Foreground="White" FontSize="16" FontFamily="Aria"/>
+                                        <TextBlock Text="{Binding Duration, StringFormat={}{0:hh\\:mm\\:ss}}"
+                                                   Padding="0 4px 0 0"
+                                                   Foreground="#51FF44" FontFamily="Aria" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                               
+                            </StackPanel>
+                          
+                            
+                            
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
