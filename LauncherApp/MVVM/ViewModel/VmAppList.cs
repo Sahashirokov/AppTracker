@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using LauncherApp.Command;
+using LauncherApp.Messanger;
 using LauncherApp.Model;
 using LauncherApp.MVVM.Model;
 using LauncherApp.Services;
@@ -23,12 +24,15 @@ public class VmAppList:BaseVm
     private readonly IFavoriteAppService _favoriteAppService;
      public ObservableCollection<AppM> AppM { get; set; }
     private bool _isLoading;
-    public VmAppList(IFavoriteAppService favoriteAppService)
+    private readonly IMessenger _messenger;
+    public VmAppList(IFavoriteAppService favoriteAppService,IMessenger messenger)
     {
         _favoriteAppService = favoriteAppService;
         AppM = new ObservableCollection<AppM>();
+        _messenger = messenger;
         LoadAppsCommand = new DelegateCommand(async () => await LoadApps());
         _ = LoadApps();
+        _messenger.Register<RefreshFavoritesMessage>(this, OnRefreshRequested);
     }
     public DelegateCommand LoadAppsCommand { get; }
     
@@ -37,7 +41,10 @@ public class VmAppList:BaseVm
         get => _isLoading;
         set => SetField(ref _isLoading, value);
     }
-
+    private void OnRefreshRequested(RefreshFavoritesMessage message)
+    {
+        LoadApps();
+    }
     private async Task LoadApps()
     {
         try

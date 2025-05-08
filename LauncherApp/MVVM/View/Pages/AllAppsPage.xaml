@@ -18,7 +18,10 @@
                         <Image Source="{Binding Icon}" Width="42" Height="42" Margin="10 0 0 0"/>
                         <StackPanel Margin="10,0,2,2" Orientation="Vertical" VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Добавить в избранное" Style="{StaticResource NavButtonStyle}"></Button>
+                                <Button Content="Добавить в избранное" Style="{StaticResource AddFavoriteApp}"
+                                        Command="{Binding DataContext.AddToFavoriteCommand,RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        CommandParameter="{Binding}"
+                                        ></Button>
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal " VerticalAlignment="Center">
                                         <TextBlock Text="Название: " FontSize="16" FontFamily="Aria" Foreground="White"/>
@@ -37,11 +40,7 @@
                                                    Foreground="#51FF44" FontFamily="Aria" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </StackPanel>
-                               
                             </StackPanel>
-                          
-                            
-                            
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

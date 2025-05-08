@@ -61,7 +61,7 @@
                  FontSize="16"
                  FontWeight="Bold"
                  Foreground="White"/>
-            <Run Text="{Binding Id}"
+            <Run Text="{Binding Name}"
                  TextDecorations=""
                  FontFamily="Segoe UI"
                  FontSize="14"
@@ -73,7 +73,7 @@
                  FontSize="16"
                  FontWeight="Bold"
                  Foreground="White"/>
-            <Run Text="{Binding Name}"
+            <Run Text="{Binding StartTime, StringFormat={}{0:dd\\/MM\\/yyyy}}"
                  FontFamily="Segoe UI"
                  FontSize="14"
                  Foreground="White"/>
@@ -84,7 +84,7 @@
                  FontSize="16"
                  FontWeight="Bold"
                  Foreground="White"/>
-            <Run Text="{Binding Version}"
+            <Run Text="{Binding LastTime}"
                  FontFamily="Segoe UI"
                  FontSize="14"
                  Foreground="White"/>
@@ -95,7 +95,7 @@
                  FontSize="16"
                  FontWeight="Bold"
                  Foreground="White"/>
-            <Run Text="{Binding DataContext.Name,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
+            <Run Text="{Binding TotalTime}"
                  FontFamily="Segoe UI"
                  FontSize="14"
                  Foreground="White"/>

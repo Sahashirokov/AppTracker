@@ -15,9 +15,11 @@ public class AppM
    public string WindowTitle {get; set;}
    
    public string Path {get; set;}
-   
+   //TODO мб убрать лишнее Icon поле
    public string Icon { get; set; }
    public DateTime StartTime { get; set; }
+   
+   public DateTime LastTime { get; set; }
    
    public TimeSpan DurationCurrent => DateTime.Now - StartTime;
    

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using LauncherApp.Data;
+using LauncherApp.Messanger;
 using LauncherApp.MVVM.ViewModel;
 using LauncherApp.MVVM.View.Pages;
 using LauncherApp.Repository.FavoriteAppRepository;
@@ -43,7 +44,8 @@ public class ViewModelLocator
         services.AddTransient<HeaderViewModel>();
         services.AddTransient<AllAppsPage>();
         services.AddTransient<FavoritePage>();
-        
+        services.AddTransient<INotificationService, MessageBoxNotificationService>();
+        services.AddSingleton<IMessenger, Messenger>();
         services.AddSingleton<VmAppList>();
         services.AddSingleton<AllAppsViewModel>();
         _serviceProvider = services.BuildServiceProvider();

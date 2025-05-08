@@ -50,7 +50,7 @@ public class ApplicationMonitorService: IApplicationMonitorService
                 //Console.WriteLine($"Обработка окна: {hWnd}, Title: '{title}'");
             if (GetProcessInfo(hWnd, out var processInfo))
             {
-                Console.WriteLine($"processInfo: {processInfo}");
+                // Console.WriteLine($"processInfo: {processInfo}");
                 windows.Add(processInfo);
             }
 
@@ -58,7 +58,7 @@ public class ApplicationMonitorService: IApplicationMonitorService
         };
 
         EnumWindows(callback, IntPtr.Zero);
-        Console.WriteLine($"Найдено приложений: {windows.Count}");
+        // Console.WriteLine($"Найдено приложений: {windows.Count}");
         return windows.DistinctBy(a => a.ProcessId);
     }
 
@@ -70,7 +70,7 @@ public class ApplicationMonitorService: IApplicationMonitorService
         try
         {
             using var process = Process.GetProcessById(processId);
-             Console.WriteLine($"Process Name: {process.ProcessName}, MainModule: {process.MainModule?.FileName}");
+             // Console.WriteLine($"Process Name: {process.ProcessName}, MainModule: {process.MainModule?.FileName}");
             if (IsSystemProcess(process)) return false;
 
             info = new ApplicationInfo

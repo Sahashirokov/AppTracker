@@ -30,7 +30,9 @@ public class AppFavoriteRepository:IFavoriteAppRepository
        await _dbContext.AppMs.AddAsync(entity);
        await _dbContext.SaveChangesAsync();
     }
-
+    public async Task<bool> ExistsAsync(string name, string path)
+        => await _dbContext.AppMs
+            .AnyAsync(a => a.Name == name && a.Path == path);
     public Task UpdateAsync(AppM entity)
     {
         throw new System.NotImplementedException();
