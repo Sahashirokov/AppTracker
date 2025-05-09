@@ -15,11 +15,18 @@ namespace LauncherApp.MVVM.ViewModel;
 public class AllAppsViewModel: BaseVm
 {
     private readonly IApplicationMonitorService _monitorService;
-    private ObservableCollection<ApplicationInfo> _applications = new();
+    private ObservableCollection<ApplicationInfoWrapper> _applications = new(); 
+
+    public ObservableCollection<ApplicationInfoWrapper> Applications 
+    {
+        get => _applications;
+        set => SetField(ref _applications, value);
+    }
+
     private readonly IFavoriteAppService _favoriteAppService;
     private readonly INotificationService _notificationService;
     private HashSet<string> _existingFavorites = new();
-    public DelegateCommand<ApplicationInfo> AddToFavoriteCommand { get; }
+    public DelegateCommand<ApplicationInfoWrapper> AddToFavoriteCommand { get; }
     private readonly IMessenger _messenger;
     public AllAppsViewModel(IApplicationMonitorService monitorService,IFavoriteAppService favoriteAppService,INotificationService notificationService,IMessenger messenger)
     {
@@ -28,18 +35,28 @@ public class AllAppsViewModel: BaseVm
         _favoriteAppService = favoriteAppService;
         _notificationService = notificationService;
         _messenger = messenger;
-        LoadApplications();
-        AddToFavoriteCommand = new DelegateCommand<ApplicationInfo>(AddToFavorite,CanAddToFavorite);
+        InitializeAsync();
+        AddToFavoriteCommand = new DelegateCommand<ApplicationInfoWrapper>(AddToFavorite,CanAddToFavorite);
     }
-    private bool CanAddToFavorite(ApplicationInfo appInfo)
+    private async Task InitializeAsync()
     {
-        var key = $"{appInfo.Name}|{appInfo.Path}";
+        await LoadExistingFavorites(); // Загрузка избранного при старте
+        LoadApplications();           // Загрузка приложений
+    }
+    private bool CanAddToFavorite(ApplicationInfoWrapper appInfo)
+    {
+        var key = $"{appInfo.Info
+            .Name}|{appInfo.Info
+            .Path}";
         return !_existingFavorites.Contains(key);
     }
-    private async void AddToFavorite(ApplicationInfo appInfo)
+    
+    private async void AddToFavorite(ApplicationInfoWrapper wrapper)
     {
         try
         {
+            Console.WriteLine($"Adding new favorite app: {wrapper.Info.Name}");
+            var appInfo = wrapper.Info;
             var appM = new AppM
             {
                 Name = appInfo.Name,
@@ -52,7 +69,8 @@ public class AllAppsViewModel: BaseVm
             };
             
             await _favoriteAppService.AddAsync(appM);
-            _existingFavorites.Add($"{appM.Name}|{appM.Path}");
+            wrapper.IsFavorite = true;
+            
             CommandManager.InvalidateRequerySuggested();
             _notificationService.ShowSuccess($"{appInfo.Name} добавлено в избранное!");
             
@@ -63,41 +81,62 @@ public class AllAppsViewModel: BaseVm
             _notificationService.ShowError($"Ошибка: {ex.Message}");
         }
     }
-    public ObservableCollection<ApplicationInfo> Applications
-    {
-        get => _applications;
-        set
-        {
-            _applications = value;
-            foreach (var application in _applications)
-            {
-                Console.WriteLine(application.Name);
-            }
-            OnPropertyChanged();
-        }
-    }
+    // public ObservableCollection<ApplicationInfo> Applications
+    // {
+    //     get => _applications;
+    //     set
+    //     {
+    //         _applications = value;
+    //         foreach (var application in _applications)
+    //         {
+    //             Console.WriteLine(application.Name);
+    //         }
+    //         OnPropertyChanged();
+    //     }
+    // }
     private async void LoadApplications()
     {
         try
         {
             var apps = await Task.Run(() => 
                 _monitorService.GetVisibleApplications().ToList());
-        
-            // Используем правильный способ доступа к Dispatcher
            Application.Current.Dispatcher.Invoke(() => 
             {
                 Applications.Clear();
                 foreach (var app in apps)
                 {
-                    Applications.Add(app);
+                    var key = $"{app.Name}|{app.Path}";
+                    var wrapper = new ApplicationInfoWrapper(app, _existingFavorites.Contains(key));
+                    Applications.Add(wrapper);
                 }
+                
             });
+            await LoadExistingFavorites();
         }
         catch(Exception ex)
         {
             Console.WriteLine($"Ошибка загрузки приложений: {ex.Message}");
         }
     }
-    
+    private async Task LoadExistingFavorites()
+    {
+        try
+        {
+            var favorites = await _favoriteAppService.LoadAppsAsync();
+            _existingFavorites = new HashSet<string>(
+                favorites.Select(f => $"{f.Name}|{f.Path}"));
+        
+            // Обновляем все существующие обёртки
+            foreach(var wrapper in Applications)
+            {
+                wrapper.IsFavorite = _existingFavorites.Contains(
+                    $"{wrapper.Info.Name}|{wrapper.Info.Path}");
+            }
+        }
+        catch(Exception ex)
+        {
+            _notificationService.ShowError($"Ошибка загрузки избранного: {ex.Message}");
+        }
+    }
     private void OnApplicationsChanged(object sender, EventArgs e) => LoadApplications();
 }
