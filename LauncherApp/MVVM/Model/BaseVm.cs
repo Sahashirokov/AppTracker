@@ -13,7 +13,8 @@ public class BaseVm:INotifyPropertyChanged, IDisposable
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
+    protected void RefreshProperty(string propertyName) 
+        => OnPropertyChanged(propertyName);
     protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
     {
         if (EqualityComparer<T>.Default.Equals(field, value)) return false;

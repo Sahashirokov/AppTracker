@@ -18,4 +18,5 @@ public class ApplicationInfoWrapper:BaseVm
         Info = info;
         IsFavorite = isFavorite;
     }
+    
 }

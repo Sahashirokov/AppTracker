@@ -23,7 +23,9 @@ public class ApplicationMonitorService: IApplicationMonitorService
     {
         _shellWindow = GetShellWindow();
         
-        _refreshTimer = new Timer(1000); 
+        //Тут мы запрашиваем каждые 5 секунд список активных приложений
+        _refreshTimer = new Timer(5000); 
+        
         _refreshTimer.Elapsed += OnTimerElapsed; 
         _refreshTimer.AutoReset = true;
         _refreshTimer.Start();
@@ -50,7 +52,6 @@ public class ApplicationMonitorService: IApplicationMonitorService
                 //Console.WriteLine($"Обработка окна: {hWnd}, Title: '{title}'");
             if (GetProcessInfo(hWnd, out var processInfo))
             {
-                // Console.WriteLine($"processInfo: {processInfo}");
                 windows.Add(processInfo);
             }
 
@@ -58,7 +59,6 @@ public class ApplicationMonitorService: IApplicationMonitorService
         };
 
         EnumWindows(callback, IntPtr.Zero);
-        // Console.WriteLine($"Найдено приложений: {windows.Count}");
         return windows.DistinctBy(a => a.ProcessId);
     }
 

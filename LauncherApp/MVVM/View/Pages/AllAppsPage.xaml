@@ -11,7 +11,10 @@
     <Grid Background="#010B2F">
         <ListView ItemsSource="{Binding Applications}" 
                   HorizontalContentAlignment="Stretch"
-                  VirtualizingPanel.IsVirtualizing="True" Background="#040E27" BorderThickness="0">
+                  VirtualizingPanel.IsVirtualizing="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  ScrollViewer.CanContentScroll="True"
+                  Background="#040E27" BorderThickness="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5" Background="#24262D">
@@ -39,16 +42,16 @@
                                         <TextBlock FontWeight="Medium" FontSize="14" FontFamily="Aria" Foreground="#C6C6C6"  Padding="0 2px 24 0" VerticalAlignment="Center">
                                             <Run Text="{Binding Info.Name}"/>
                                             <Run Text=" — "/>
-                                            <Run Text="{Binding Info.WindowTitle}"></Run>
+                                            <Run Text="{Binding Info.WindowTitle,Mode=OneWay}"></Run>
                                             <!-- <Run Text=" PATH: "/> -->
                                             <!-- <Run Text="{Binding Path=Path}"></Run> -->
                                         </TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Активен: " Foreground="White" FontSize="16" FontFamily="Aria"/>
-                                        <TextBlock Text="{Binding Info.Duration, StringFormat={}{0:hh\\:mm\\:ss}}"
+                                        <TextBlock Text="{Binding Info.Duration, StringFormat={}{0:hh\\:mm\\:ss},Mode=OneWay}"
                                                    Padding="0 4px 0 0"
-                                                   Foreground="#51FF44" FontFamily="Aria" VerticalAlignment="Center"/>
+                                                   Foreground="#51FF44" FontFamily="Aria" VerticalAlignment="Center" />
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>

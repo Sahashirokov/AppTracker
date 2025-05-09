@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using LauncherApp.Command;
 using LauncherApp.Messanger;
 using LauncherApp.MVVM.Model;
@@ -16,18 +17,20 @@ public class AllAppsViewModel: BaseVm
 {
     private readonly IApplicationMonitorService _monitorService;
     private ObservableCollection<ApplicationInfoWrapper> _applications = new(); 
-
-    public ObservableCollection<ApplicationInfoWrapper> Applications 
-    {
-        get => _applications;
-        set => SetField(ref _applications, value);
-    }
-
+    private readonly DispatcherTimer _durationTimer;
     private readonly IFavoriteAppService _favoriteAppService;
     private readonly INotificationService _notificationService;
     private HashSet<string> _existingFavorites = new();
     public DelegateCommand<ApplicationInfoWrapper> AddToFavoriteCommand { get; }
     private readonly IMessenger _messenger;
+    
+    
+    public ObservableCollection<ApplicationInfoWrapper> Applications 
+    {
+        get => _applications;
+        set => SetField(ref _applications, value);
+    }
+    
     public AllAppsViewModel(IApplicationMonitorService monitorService,IFavoriteAppService favoriteAppService,INotificationService notificationService,IMessenger messenger)
     {
         _monitorService = monitorService;
@@ -37,6 +40,19 @@ public class AllAppsViewModel: BaseVm
         _messenger = messenger;
         InitializeAsync();
         AddToFavoriteCommand = new DelegateCommand<ApplicationInfoWrapper>(AddToFavorite,CanAddToFavorite);
+        _durationTimer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1)
+        };
+        _durationTimer.Tick += (s, e) => RefreshDurations();
+        _durationTimer.Start();
+    }
+    private void RefreshDurations()
+    {
+        foreach (var appWrapper in Applications)
+        {
+            appWrapper.Info.RefreshDuration(); 
+        }
     }
     private async Task InitializeAsync()
     {
@@ -81,35 +97,42 @@ public class AllAppsViewModel: BaseVm
             _notificationService.ShowError($"Ошибка: {ex.Message}");
         }
     }
-    // public ObservableCollection<ApplicationInfo> Applications
-    // {
-    //     get => _applications;
-    //     set
-    //     {
-    //         _applications = value;
-    //         foreach (var application in _applications)
-    //         {
-    //             Console.WriteLine(application.Name);
-    //         }
-    //         OnPropertyChanged();
-    //     }
-    // }
     private async void LoadApplications()
     {
         try
         {
-            var apps = await Task.Run(() => 
-                _monitorService.GetVisibleApplications().ToList());
-           Application.Current.Dispatcher.Invoke(() => 
+            var newApps = _monitorService.GetVisibleApplications().ToList();
+
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                Applications.Clear();
-                foreach (var app in apps)
+                // Словарь для быстрого поиска существующих элементов
+                var currentAppsDict = Applications.ToDictionary(a => a.Info.ProcessId);
+            
+                // Обрабатываем новые и существующие приложения
+                foreach (var newApp in newApps)
                 {
-                    var key = $"{app.Name}|{app.Path}";
-                    var wrapper = new ApplicationInfoWrapper(app, _existingFavorites.Contains(key));
-                    Applications.Add(wrapper);
+                    if (currentAppsDict.TryGetValue(newApp.ProcessId, out var existingWrapper))
+                    {
+                        // Обновляем только изменяющиеся свойства
+                        existingWrapper.Info.WindowTitle = newApp.WindowTitle;
+                        existingWrapper.Info.StartTime = newApp.StartTime;
+                    }
+                    else
+                    {
+                        // Добавляем новые элементы
+                        var key = $"{newApp.Name}|{newApp.Path}";
+                        var wrapper = new ApplicationInfoWrapper(newApp, _existingFavorites.Contains(key));
+                        Applications.Add(wrapper);
+                    }
                 }
-                
+
+                // Удаляем несуществующие элементы
+                var newAppIds = newApps.Select(a => a.ProcessId).ToHashSet();
+                var itemsToRemove = Applications.Where(a => !newAppIds.Contains(a.Info.ProcessId)).ToList();
+                foreach (var item in itemsToRemove)
+                {
+                    Applications.Remove(item);
+                }
             });
             await LoadExistingFavorites();
         }
