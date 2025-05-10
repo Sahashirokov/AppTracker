@@ -16,6 +16,9 @@
             <converters:BoolToStartTextConverter x:Key="BoolToStartTextConverter"/>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             
+            <converters:BoolToTextConverter x:Key="BoolToTextConverter"/>
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+            
             <converters:AllTrueToVisibilityConverter x:Key="AllTrueToVisibilityConverter"/>
             <converters:InvertBoolConverter x:Key="InvertBoolConverter"/>
         </ResourceDictionary>

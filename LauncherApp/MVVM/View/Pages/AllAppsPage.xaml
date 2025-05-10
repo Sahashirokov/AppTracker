@@ -60,10 +60,22 @@
                                         </TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <TextBlock Text="Активен: " Foreground="White" FontSize="16" FontFamily="Aria"/>
-                                        <TextBlock Text="{Binding Info.Duration, StringFormat={}{0:hh\\:mm\\:ss},Mode=OneWay}"
-                                                   Padding="0 4px 0 0"
-                                                   Foreground="#51FF44" FontFamily="Aria" VerticalAlignment="Center" />
+                                        <TextBlock Text="Статус: " 
+                                                   Foreground="White" 
+                                                   FontSize="16" 
+                                                   FontFamily="Aria"/>
+    
+                                        <TextBlock Text="{Binding Info.IsRunning, Converter={StaticResource BoolToTextConverter}, ConverterParameter='Активно|Не активно'}"
+                                                   Foreground="{Binding Info.IsRunning, Converter={StaticResource BoolToColorConverter}, ConverterParameter='#51FF44|Gray'}"
+                                                   Margin="5 0 0 0"
+                                                   VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="{Binding Info.Duration, StringFormat={}{0:hh\\:mm\\:ss}}"
+                                                   Padding="5 0 0 0"
+                                                   Foreground="#51FF44"
+                                                   FontFamily="Aria"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="{Binding Info.IsRunning, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>

@@ -7,5 +7,7 @@ namespace LauncherApp.Services;
 public interface IApplicationMonitorService
 {
     IEnumerable<ApplicationInfo> GetVisibleApplications();
+    IEnumerable<ApplicationInfo> GetAllWindowedApplications();
+    IEnumerable<ApplicationInfo> GetAllInstalledApplications();
     event EventHandler ApplicationsChanged;
 }

@@ -10,6 +10,7 @@ using System.Timers;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using LauncherApp.MVVM.Model;
+using Microsoft.Win32;
 
 namespace LauncherApp.Services;
 
@@ -43,10 +44,10 @@ public class ApplicationMonitorService: IApplicationMonitorService
         {
             if (!IsWindowVisible(hWnd)) return true;
             if (hWnd == _shellWindow) return true;
-
+    
             var style = GetWindowLong(hWnd, GWL_STYLE);
             if ((style & WS_VISIBLE) == 0) return true;
-
+    
             var title = GetWindowTitle(hWnd);
             if (string.IsNullOrEmpty(title)) return true;
                 //Console.WriteLine($"Обработка окна: {hWnd}, Title: '{title}'");
@@ -54,14 +55,67 @@ public class ApplicationMonitorService: IApplicationMonitorService
             {
                 windows.Add(processInfo);
             }
-
+    
             return true;
         };
-
+    
         EnumWindows(callback, IntPtr.Zero);
         return windows.DistinctBy(a => a.ProcessId);
     }
+    public IEnumerable<ApplicationInfo> GetAllInstalledApplications()
+    {
+        var apps = new List<ApplicationInfo>();
+        var registryPaths = new[]
+        {
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",
+            @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" // Для 32-битных на 64-битной ОС
+        };
 
+        foreach (var path in registryPaths)
+        {
+            using var baseKey = Registry.LocalMachine.OpenSubKey(path);
+            if (baseKey == null) continue;
+
+            foreach (var subKeyName in baseKey.GetSubKeyNames())
+            {
+                using var subKey = baseKey.OpenSubKey(subKeyName);
+                var displayName = subKey?.GetValue("DisplayName")?.ToString();
+                var publisher = subKey?.GetValue("Publisher")?.ToString();
+                var installLocation = subKey?.GetValue("InstallLocation")?.ToString();
+                var exePath = subKey?.GetValue("DisplayIcon")?.ToString();
+
+                if (!string.IsNullOrEmpty(displayName) && !string.IsNullOrEmpty(exePath))
+                {
+                    apps.Add(new ApplicationInfo
+                    {
+                        Name = displayName,
+                        Path = exePath,
+                        Publisher = publisher,
+                        InstallLocation = installLocation,
+                        IsRunning = false // Определится позже
+                    });
+                }
+            }
+        }
+
+        return apps.DistinctBy(a => a.Path); // Убираем дубликаты
+    }
+    public IEnumerable<ApplicationInfo> GetAllWindowedApplications()
+    {
+        return Process.GetProcesses()
+            .Where(p => !string.IsNullOrEmpty(p.MainWindowTitle) && p.MainWindowHandle != IntPtr.Zero)
+            .Select(p => new ApplicationInfo
+            {
+                ProcessId = p.Id,
+                Name = p.ProcessName,
+                Path = p.MainModule?.FileName,
+                WindowTitle = p.MainWindowTitle,
+                StartTime = p.StartTime,
+                Icon =  GetProcessIcon(p),
+                IsRunning = true,
+            })
+            .DistinctBy(p => p.Path); // Убедитесь, что нет дубликатов по пути
+    }
     private bool GetProcessInfo(IntPtr hWnd, out ApplicationInfo info)
     {
         info = null;

@@ -8,21 +8,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc8285a8-bac6-47b2-8e1b-7228c0ae8d8c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LauncherApp/MVVM/Converters/BoolToColorConverter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LauncherApp/MVVM/Converters/BoolToTextConverter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/App.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/Model/ApplicationInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/Model/ApplicationInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/AllAppsPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/AllAppsPage.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/AllAppsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/AllAppsViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/Services/ApplicationMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Services/ApplicationMonitorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/Services/IApplicationMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Services/IApplicationMonitorService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/App.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/App.baml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/App.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/App.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/App.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/App.g.i.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.g.resources" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.g.resources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp_MarkupCompile.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp_MarkupCompile.lref" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.baml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.i.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/styles/ButtonStyles.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/styles/ButtonStyles.baml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/styles/ButtonStyles.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/styles/ButtonStyles.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,27 +102,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.LauncherApp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.36788446&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;SQL Inserts&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.LauncherApp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "XThreadsFramesViewSplitterKey": "0.36788446",
+    "database.data.extractors.current.export.id": "SQL Inserts",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CodeLensConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="LauncherApp" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -195,7 +205,8 @@
       <workItem from="1746769098177" duration="2880000" />
       <workItem from="1746798955805" duration="5682000" />
       <workItem from="1746862165777" duration="2929000" />
-      <workItem from="1746877149039" duration="2549000" />
+      <workItem from="1746877149039" duration="3483000" />
+      <workItem from="1746883926865" duration="3529000" />
     </task>
     <task id="LOCAL-00001" summary="git init Start Project App Tracker">
       <option name="closed" value="true" />
@@ -295,36 +306,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="удалил старый код" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LauncherApp/Extension/IconExtractor.cs</url>
-          <line>36</line>
-          <properties documentPath="A:\Git\Debug\LauncherApp\LauncherApp\Extension\IconExtractor.cs" containingFunctionPresentation="Lambda expression inside Method 'GetIcon'">
-            <startOffsets>
-              <option value="1210" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1229" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LauncherApp/Extension/IconExtractor.cs</url>
-          <line>41</line>
-          <properties documentPath="A:\Git\Debug\LauncherApp\LauncherApp\Extension\IconExtractor.cs" containingFunctionPresentation="Lambda expression inside Method 'GetIcon'">
-            <startOffsets>
-              <option value="1353" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1374" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#LauncherApp.Model.AppChecker" memberName="Start" />

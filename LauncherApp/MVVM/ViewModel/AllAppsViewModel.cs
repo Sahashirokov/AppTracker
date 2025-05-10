@@ -76,28 +76,78 @@ public class AllAppsViewModel : BaseVm
     }
     private void UpdateApps(object sender = null, EventArgs e = null)
     {
-        var newApps = _monitorService.GetVisibleApplications().ToList();
-        
+       var installedApps = _monitorService.GetAllInstalledApplications().ToList();
+       var filteredApps = installedApps.ToList();
+       Console.WriteLine($"{installedApps.Count} installed applications, {filteredApps.Count} applications");
+        var newApps = _monitorService.GetAllWindowedApplications().ToList();
+
         Application.Current.Dispatcher.Invoke(() =>
         {
             // Обновление существующих
-            var current = Applications.ToDictionary(a => a.Info.ProcessId);
+            var currentApps = Applications.ToDictionary(a => a.Info.Path);
+            
+            // 2. Обрабатываем установленные приложения
+            foreach (var installedApp in filteredApps)
+            {
+                var runningApp = newApps.FirstOrDefault(r => 
+                    r.Path.Equals(installedApp.Path, StringComparison.OrdinalIgnoreCase));
+
+                if (currentApps.TryGetValue(installedApp.Path, out var existingWrapper))
+                {
+                    // Обновляем статус и время
+                    existingWrapper.Info.IsRunning = runningApp != null;
+                    if (runningApp != null)
+                    {
+                        existingWrapper.Info.StartTime = runningApp.StartTime;
+                    }
+                }
+                else
+                {
+                    // Добавляем новое установленное приложение
+                    Console.WriteLine(installedApp);
+                    Applications.Add(new ApplicationInfoWrapper(
+                        new ApplicationInfo 
+                        {
+                            Name = installedApp.Name,
+                            WindowTitle = installedApp.Name,
+                            Path = installedApp.Path,
+                            IsRunning = runningApp != null,
+                            StartTime = runningApp?.StartTime ?? DateTime.MinValue
+                        }, 
+                        _favoriteKeys.Contains($"{installedApp.Name}|{installedApp.Path}"))
+                    );
+                }
+            }
             foreach (var app in newApps)
             {
-                if (current.TryGetValue(app.ProcessId, out var existing))
+                if (currentApps.TryGetValue(app.Path, out var existing))
                 {
                     existing.Info.WindowTitle = app.WindowTitle;
                     existing.Info.StartTime = app.StartTime;
                 }
                 else
                 {
-                    Applications.Add(new ApplicationInfoWrapper(app, 
-                        _favoriteKeys.Contains($"{app.Name}|{app.Path}")));
+                    var isInstalled = installedApps.Any(i => 
+                        i.Path.Equals(app.Path, StringComparison.OrdinalIgnoreCase));
+                    if (!isInstalled && !Applications.Any(a =>
+                            a.Info.Path.Equals(app.Path, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        Applications.Add(new ApplicationInfoWrapper(app,
+                            _favoriteKeys.Contains($"{app.Name}|{app.Path}")));
+                    }
                 }
             }
             // Удаление отсутствующих
-            var toRemove = Applications.Where(a => !newApps.Any(n => n.ProcessId == a.Info.ProcessId)).ToList();
-            toRemove.ForEach(a => Applications.Remove(a));
+            var toRemove = Applications
+                .Where(a => 
+                    !installedApps.Any(i => i.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)) && 
+                    !newApps.Any(r => r.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)))
+                .ToList();
+
+            foreach (var item in toRemove)
+            {
+                Applications.Remove(item);
+            }
         });
     }
 
