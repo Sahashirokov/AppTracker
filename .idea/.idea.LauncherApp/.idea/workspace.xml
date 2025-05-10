@@ -9,12 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dc8285a8-bac6-47b2-8e1b-7228c0ae8d8c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/Model/ApplicationInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/Model/ApplicationInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/Model/BaseVm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/Model/BaseVm.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/AllAppsPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/AllAppsPage.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/AllAppsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/AllAppsViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/ApplicationInfoWrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/ApplicationInfoWrapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/Services/ApplicationMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Services/ApplicationMonitorService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
@@ -25,6 +21,8 @@
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.i.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/styles/ButtonStyles.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/styles/ButtonStyles.baml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/styles/ButtonStyles.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/styles/ButtonStyles.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +193,9 @@
       <workItem from="1746690670110" duration="4697000" />
       <workItem from="1746718924641" duration="2656000" />
       <workItem from="1746769098177" duration="2880000" />
-      <workItem from="1746798955805" duration="5541000" />
+      <workItem from="1746798955805" duration="5682000" />
+      <workItem from="1746862165777" duration="2929000" />
+      <workItem from="1746877149039" duration="2549000" />
     </task>
     <task id="LOCAL-00001" summary="git init Start Project App Tracker">
       <option name="closed" value="true" />

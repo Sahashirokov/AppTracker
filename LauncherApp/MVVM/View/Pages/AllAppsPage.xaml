@@ -9,7 +9,19 @@
       DataContext="{Binding AllAppsViewModel,Source={StaticResource ViewModelLocator}}"
       >
     <Grid Background="#010B2F">
-        <ListView ItemsSource="{Binding Applications}" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="68"></RowDefinition>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Height="68" Background="#46348E" >
+                <Button Content="Выбрать в ручную" Style="{StaticResource AddInPathButton}"
+                        Command="{Binding ManualAddToFavoriteCommand}"
+                        Width="164" Height="36" VerticalAlignment="Center" HorizontalAlignment="left"
+                        Margin="20 0 0 0"
+                        ></Button>
+            </Grid>
+        <ListView Grid.Row="1" ItemsSource="{Binding Applications}" 
                   HorizontalContentAlignment="Stretch"
                   VirtualizingPanel.IsVirtualizing="True"
                   VirtualizingPanel.VirtualizationMode="Recycling"
@@ -60,5 +72,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        </Grid>
     </Grid>
 </Page>
