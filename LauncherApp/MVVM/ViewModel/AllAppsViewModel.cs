@@ -71,7 +71,7 @@ public class AllAppsViewModel : BaseVm
     private async Task LoadFavorites()
     {
         var favorites = await _favoriteService.LoadAppsAsync();
-        _favoriteKeys = new HashSet<string>(favorites.Select(f => $"{f.Name}|{f.Path}"));
+        _favoriteKeys = new HashSet<string>(favorites.Select(f => $"{f.Path}"));
         Applications.ToList().ForEach(a => a.IsFavorite = _favoriteKeys.Contains($"{a.Info.Name}|{a.Info.Path}"));
     }
     private void UpdateApps(object sender = null, EventArgs e = null)
@@ -111,10 +111,11 @@ public class AllAppsViewModel : BaseVm
                             Name = installedApp.Name,
                             WindowTitle = installedApp.Name,
                             Path = installedApp.Path,
+                            Icon = installedApp.Icon,
                             IsRunning = runningApp != null,
                             StartTime = runningApp?.StartTime ?? DateTime.MinValue
                         }, 
-                        _favoriteKeys.Contains($"{installedApp.Name}|{installedApp.Path}"))
+                        _favoriteKeys.Contains($"{installedApp.Path}"))
                     );
                 }
             }
@@ -133,7 +134,7 @@ public class AllAppsViewModel : BaseVm
                             a.Info.Path.Equals(app.Path, StringComparison.OrdinalIgnoreCase)))
                     {
                         Applications.Add(new ApplicationInfoWrapper(app,
-                            _favoriteKeys.Contains($"{app.Name}|{app.Path}")));
+                            _favoriteKeys.Contains($"{app.Path}")));
                     }
                 }
             }
@@ -143,10 +144,16 @@ public class AllAppsViewModel : BaseVm
                     !installedApps.Any(i => i.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)) && 
                     !newApps.Any(r => r.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)))
                 .ToList();
-
             foreach (var item in toRemove)
             {
                 Applications.Remove(item);
+            }
+            var sortedApps = Applications.OrderByDescending(item => item.Info.IsRunning)
+                .ToList();
+            Applications.Clear();
+            foreach (var item in sortedApps)
+            {
+                Applications.Add(item);
             }
         });
     }
@@ -165,7 +172,7 @@ public class AllAppsViewModel : BaseVm
                 Version = "1.0.0"
             });
             
-            _favoriteKeys.Add($"{app.Name}|{app.Path}");
+            _favoriteKeys.Add($"{app.Path}");
             wrapper.IsFavorite = true;
             _notification.ShowSuccess($"{app.Name} added to favorites!");
             _messenger.Send(new RefreshFavoritesMessage());

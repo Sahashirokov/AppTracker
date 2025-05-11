@@ -2,6 +2,7 @@
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -83,38 +84,77 @@ public class ApplicationMonitorService: IApplicationMonitorService
                 var publisher = subKey?.GetValue("Publisher")?.ToString();
                 var installLocation = subKey?.GetValue("InstallLocation")?.ToString();
                 var exePath = subKey?.GetValue("DisplayIcon")?.ToString();
-
+               
                 if (!string.IsNullOrEmpty(displayName) && !string.IsNullOrEmpty(exePath))
                 {
+                    exePath = exePath.Split(',')[0].Trim('"');
+                    if (!File.Exists(exePath)) 
+                    {
+                        Console.WriteLine($"File not found: {exePath}");
+                        continue;
+                    }
+                    Console.WriteLine($"publisher: {publisher}, path: {exePath}");
                     apps.Add(new ApplicationInfo
                     {
                         Name = displayName,
                         Path = exePath,
                         Publisher = publisher,
                         InstallLocation = installLocation,
-                        IsRunning = false // Определится позже
+                        IsRunning = false ,
+                        Icon = IconExtractor.GetIcon(exePath),// Определится позже
                     });
                 }
             }
         }
 
-        return apps.DistinctBy(a => a.Path); // Убираем дубликаты
+        return apps.DistinctBy(a => a.Path)
+            .Where(s=>s.Publisher != null && !s.Publisher.Contains("Microsoft Corporation",StringComparison.OrdinalIgnoreCase)); // Убираем дубликаты
     }
     public IEnumerable<ApplicationInfo> GetAllWindowedApplications()
     {
         return Process.GetProcesses()
             .Where(p => !string.IsNullOrEmpty(p.MainWindowTitle) && p.MainWindowHandle != IntPtr.Zero)
-            .Select(p => new ApplicationInfo
+            .Select(p => 
             {
-                ProcessId = p.Id,
-                Name = p.ProcessName,
-                Path = p.MainModule?.FileName,
-                WindowTitle = p.MainWindowTitle,
-                StartTime = p.StartTime,
-                Icon =  GetProcessIcon(p),
-                IsRunning = true,
+                try
+                {
+                    string path = GetProcessPathSafe(p);
+                
+                    return new ApplicationInfo
+                    {
+                        ProcessId = p.Id,
+                        Name = p.ProcessName,
+                        Path = path, // Гарантированно не-null после исправления GetProcessPathSafe
+                        WindowTitle = p.MainWindowTitle,
+                        StartTime = p.StartTime,
+                        Icon = GetProcessIcon(p),
+                        IsRunning = true,
+                    };
+                }
+                catch (Win32Exception)
+                {
+                    return null;
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
             })
-            .DistinctBy(p => p.Path); // Убедитесь, что нет дубликатов по пути
+            .Where(appInfo => appInfo != null)
+            .DistinctBy(p => p.Path); // Теперь Path не может быть null
+    }
+
+// Обновленный метод с защитой от null
+    private string GetProcessPathSafe(Process p)
+    {
+        try 
+        {
+            return p.MainModule?.FileName ?? string.Empty; // Заменяем null на empty
+        }
+        catch 
+        {
+            return string.Empty;
+        }
     }
     private bool GetProcessInfo(IntPtr hWnd, out ApplicationInfo info)
     {
@@ -144,7 +184,6 @@ public class ApplicationMonitorService: IApplicationMonitorService
             return false;
         }
     }
-
     private ImageSource GetProcessIcon(Process process)
     {
         try
