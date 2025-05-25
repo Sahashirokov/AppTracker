@@ -9,7 +9,7 @@ public class ApplicationInfo:BaseVm
     private DateTime _startTime;
     private string _path;
     private ImageSource _icon;
-    
+    public int id { get; set; }
     public int ProcessId { get; set; }
     public string Name { get; set; }
     

@@ -38,9 +38,13 @@ public class AppFavoriteRepository:IFavoriteAppRepository
         throw new System.NotImplementedException();
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(AppM? entity)
     {
-        throw new System.NotImplementedException();
+        if (entity != null)
+        {
+            _dbContext.AppMs.Remove(entity);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 
     public Task<IEnumerable<AppM>> GetActiveAppsAsync()

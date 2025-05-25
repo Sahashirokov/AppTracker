@@ -104,7 +104,7 @@ public class AllAppsViewModel : BaseVm
                 else
                 {
                     // Добавляем новое установленное приложение
-                    Console.WriteLine(installedApp);
+                  //  Console.WriteLine(installedApp);
                     Applications.Add(new ApplicationInfoWrapper(
                         new ApplicationInfo 
                         {
@@ -168,8 +168,8 @@ public class AllAppsViewModel : BaseVm
                 Path = app.Path,
                 WindowTitle = app.WindowTitle,
                 Icon = Icon.ExtractAssociatedIcon(app.Path)?.ToString(),
-                StartTime = DateTime.Now,
-                Version = "1.0.0"
+                StartTime = app.StartTime,
+                Version = "1.0.0",
             });
             
             _favoriteKeys.Add($"{app.Path}");

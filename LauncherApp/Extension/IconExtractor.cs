@@ -38,7 +38,7 @@ public class IconExtractor
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"error image:{ex.Message}");
                 return DefaultIcon();
             }
         });

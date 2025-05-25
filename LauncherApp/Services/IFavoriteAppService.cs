@@ -10,7 +10,8 @@ public interface IFavoriteAppService
 {
     Task<List<AppM?>> LoadAppsAsync();
     Task AddAsync(AppM app);
-    Task<AppM> GetUserByIdAsync(int id);
+    Task<AppM> GetAppByIdAsync(int id);
+    Task DeleteAsync(int id);
 }
 
 public class FavoriteAppService: IFavoriteAppService
@@ -33,9 +34,19 @@ public class FavoriteAppService: IFavoriteAppService
         return await _favoriteAppRepository.GetAllAsync();
     }
 
-    public Task<AppM> GetUserByIdAsync(int id)
+    public async Task<AppM> GetAppByIdAsync(int id)
     {
-        throw new System.NotImplementedException();
+        return await _favoriteAppRepository.GetByIdAsync(id);
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        AppM appToDelete = await _favoriteAppRepository.GetByIdAsync(id);
+        if (appToDelete != null)
+        {
+            await _favoriteAppRepository.DeleteAsync(appToDelete);
+        }
+       
     }
     public async Task<bool> CheckIfExistsAsync(string name, string path)
         => await _favoriteAppRepository.ExistsAsync(name, path);

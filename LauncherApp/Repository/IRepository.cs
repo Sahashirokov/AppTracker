@@ -13,5 +13,5 @@ public interface IRepository<T> where T : class
     Task AddAsync(T entity);
     Task<bool> ExistsAsync(string name, string path);
     Task UpdateAsync(T entity);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(AppM app);
 }

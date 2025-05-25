@@ -19,12 +19,13 @@
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Padding" Value="6"></Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
         
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="#24262D">
+                    <Grid Background="#24262D" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -32,10 +33,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0"
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding Icon}" Width="42" Height="42" Margin="10 0 0 0"/>
+                        <Button Grid.Column="1"
                                 Content="{Binding IsRunning,Converter={StaticResource BoolToStartTextConverter}}"
                                 Command="{Binding DataContext.ToggleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
                                 CommandParameter="{Binding }"
@@ -43,19 +46,19 @@
         
                                 />
 
-                        <Button Grid.Column="1"
-                                Content="Изменить путь" Command="{Binding DataContext.Edit, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
-                                Style="{StaticResource CommonEditPathStyle}"
-                                CommandParameter="{Binding }"
-                                />
+                        <!-- <Button Grid.Column="2" -->
+                        <!--         Content="Изменить путь" Command="{Binding DataContext.Edit, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" -->
+                        <!--         Style="{StaticResource CommonEditPathStyle}" -->
+                        <!--         CommandParameter="{Binding }" -->
+                        <!--         /> -->
 
-                        <Button Grid.Column="2"
-                                Content="Удалить" Command="{Binding DataContext.Remove, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
+                        <Button Grid.Column="3"
+                                Content="Удалить" Command="{Binding DataContext.RemoveApp, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
                                 CommandParameter="{Binding }"
                                 Style="{StaticResource CommonDeleteStyle}"
                                 />
 
-                        <TextBlock Grid.Column="3"  Padding="2px 10px 8px 2px">
+                        <TextBlock Grid.Column="4"  Padding="2px 10px 8px 2px">
             <Run Text="Название:"
                  FontFamily="Arial"
                  FontSize="16"
@@ -67,7 +70,7 @@
                  FontSize="14"
                  Foreground="White"/>
                         </TextBlock>
-                        <TextBlock Grid.Column="4" Padding="2px 10px 8px 2px">
+                        <TextBlock Grid.Column="5" Padding="2px 10px 8px 2px">
             <Run Text="Первый запуск: "
                  FontFamily="Arial"
                  FontSize="16"
@@ -78,7 +81,7 @@
                  FontSize="14"
                  Foreground="White"/>
                         </TextBlock>
-                        <TextBlock Grid.Column="5" Padding="2px 10px 8px 2px">
+                        <TextBlock Grid.Column="6" Padding="2px 10px 8px 2px">
             <Run Text="Время последней сессии: "
                  FontFamily="Arial"
                  FontSize="16"
@@ -89,7 +92,7 @@
                  FontSize="14"
                  Foreground="White"/>
                         </TextBlock>
-                        <TextBlock Grid.Column="6" Padding="0px 10px 8px 0px">
+                        <TextBlock Grid.Column="7" Padding="0px 10px 8px 0px">
             <Run Text="Всего времени: "
                  FontFamily="Arial"
                  FontSize="16"

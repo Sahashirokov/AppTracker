@@ -90,10 +90,10 @@ public class ApplicationMonitorService: IApplicationMonitorService
                     exePath = exePath.Split(',')[0].Trim('"');
                     if (!File.Exists(exePath)) 
                     {
-                        Console.WriteLine($"File not found: {exePath}");
+                       // Console.WriteLine($"File not found: {exePath}");
                         continue;
                     }
-                    Console.WriteLine($"publisher: {publisher}, path: {exePath}");
+                   // Console.WriteLine($"publisher: {publisher}, path: {exePath}");
                     apps.Add(new ApplicationInfo
                     {
                         Name = displayName,
