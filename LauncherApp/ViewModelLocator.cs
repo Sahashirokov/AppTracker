@@ -7,6 +7,8 @@ using LauncherApp.MVVM.ViewModel;
 using LauncherApp.MVVM.View.Pages;
 using LauncherApp.Repository.FavoriteAppRepository;
 using LauncherApp.Services;
+using LauncherApp.Services.MonitorService;
+using LauncherApp.Services.MonitorService.Interface;
 using LauncherApp.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,14 +38,19 @@ public class ViewModelLocator
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddScoped<IFavoriteAppRepository, AppFavoriteRepository>();
         services.AddTransient<IFavoriteAppService, FavoriteAppService>();
+        //
+        services.AddSingleton<IWindowEnumerator, WindowEnumerator>();
+        services.AddSingleton<IProcessService, ProcessService>();
+        services.AddSingleton<IRegistryService, RegistryService>();
+        services.AddSingleton<IApplicationCollector, ApplicationCollector>();
         services.AddSingleton<IApplicationMonitorService, ApplicationMonitorService>();
-        
+        //
         services.AddSingleton<AppStateService>();
         
         services.AddTransient<MainViewModel>();
         services.AddTransient<HeaderViewModel>();
-        services.AddTransient<AllAppsPage>();
         services.AddTransient<FavoritePage>();
+        services.AddTransient<AllAppsPage>();
         services.AddTransient<INotificationService, MessageBoxNotificationService>();
         services.AddSingleton<IMessenger, Messenger>();
         services.AddSingleton<VmAppList>();

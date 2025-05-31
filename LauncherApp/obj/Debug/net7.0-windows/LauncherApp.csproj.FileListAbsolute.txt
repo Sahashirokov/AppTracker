@@ -87,3 +87,5 @@ A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\ref\LauncherApp.dl
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\styles\LoadingSpinner.baml
 A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\assets\menu2.png
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\LauncherApp.csproj.CopyComplete
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\CalcBinding.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\DynamicExpresso.Core.dll

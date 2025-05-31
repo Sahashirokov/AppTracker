@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using LauncherApp.MVVM.Model;
 
 namespace LauncherApp.Services;
@@ -7,6 +8,7 @@ namespace LauncherApp.Services;
 public interface IApplicationMonitorService
 {
     IEnumerable<ApplicationInfo> GetVisibleApplications();
+    IEnumerable<ApplicationInfo> GetFilteredVisibleApplications(ObservableCollection<ApplicationInfo> applicationInfos);
     IEnumerable<ApplicationInfo> GetAllWindowedApplications();
     IEnumerable<ApplicationInfo> GetAllInstalledApplications();
     event EventHandler ApplicationsChanged;

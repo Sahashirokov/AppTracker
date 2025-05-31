@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "7IX4Rp77rg0=",
+  "dgSpecHash": "IH5AOXB382w=",
   "success": true,
   "projectFilePath": "A:\\Git\\Debug\\LauncherApp\\LauncherApp\\LauncherApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Alexander\\.nuget\\packages\\calcbinding\\2.5.2\\calcbinding.2.5.2.nupkg.sha512",
+    "C:\\Users\\Alexander\\.nuget\\packages\\dynamicexpresso.core\\2.3.1\\dynamicexpresso.core.2.3.1.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\mediatr\\12.5.0\\mediatr.12.5.0.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

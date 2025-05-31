@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:LauncherApp.MVVM.View.Pages"
+      xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
       mc:Ignorable="d"
       Title="AllAppsPage" 
       DataContext="{Binding AllAppsViewModel,Source={StaticResource ViewModelLocator}}"
@@ -64,18 +65,21 @@
                                                    Foreground="White" 
                                                    FontSize="16" 
                                                    FontFamily="Aria"/>
-    
-                                        <TextBlock Text="{Binding Info.IsRunning, Converter={StaticResource BoolToTextConverter}, ConverterParameter='Активно|Не активно'}"
-                                                   Foreground="{Binding Info.IsRunning, Converter={StaticResource BoolToColorConverter}, ConverterParameter='#51FF44|Gray'}"
-                                                   Margin="5 0 0 0"
-                                                   VerticalAlignment="Center"/>
+                                        
+                                            <!-- TODO адаптировать этот код под избранные приложения - -->
+                                        
+                                        <TextBlock 
+                                            Text="{c:Binding 'Info.IsRunning ? &quot;Активно&quot; : &quot;Не активно&quot;'}" 
+                                            Foreground="{c:Binding 'Info.IsRunning ? &quot;#51FF44&quot; : &quot;Gray&quot;'}"
+                                            Margin="5 0 0 0"
+                                            VerticalAlignment="Center"/>
 
                                         <TextBlock Text="{Binding Info.Duration, StringFormat={}{0:hh\\:mm\\:ss}}"
                                                    Padding="5 0 0 0"
                                                    Foreground="#51FF44"
                                                    FontFamily="Aria"
                                                    VerticalAlignment="Center"
-                                                   Visibility="{Binding Info.IsRunning, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                                   Visibility="{c:Binding Info.IsRunning, FalseToVisibility=Collapsed}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using LauncherApp.Command;
 using LauncherApp.Messanger;
 using LauncherApp.Model;
@@ -27,22 +28,38 @@ public class VmAppList:BaseVm
     private bool _isLoading;
     private readonly IMessenger _messenger;
     public DelegateCommand<ApplicationInfo> RemoveApp { get; }
-    public VmAppList(IFavoriteAppService favoriteAppService,IMessenger messenger)
+    private readonly IApplicationMonitorService _monitorService;
+    private DispatcherTimer _timer;
+    public VmAppList(IFavoriteAppService favoriteAppService,IMessenger messenger,IApplicationMonitorService monitor)
     {
         _favoriteAppService = favoriteAppService;
         AppM = new ObservableCollection<ApplicationInfo>();
         _messenger = messenger;
+        _monitorService = monitor;
         LoadAppsCommand = new DelegateCommand(async () => await LoadApps());
         RemoveApp = new DelegateCommand<ApplicationInfo>(async (item)=> await DeleteApp(item),(item)=>item != null);
         _ = LoadApps();
         _messenger.Register<RefreshFavoritesMessage>(this, OnRefreshRequested);
+        StartTimer();
+        _monitorService.ApplicationsChanged += UpdateApp;
+    }
+    
+
+    private void StartTimer()
+    {
+        _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+        _timer.Tick += Timer_Tick;
+        _timer.Start();
+    }
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+        foreach (var app in AppM)
+        {
+            app.RefreshDuration();
+        }
     }
     public DelegateCommand LoadAppsCommand { get; }
-    // public DelegateCommand IsRunning { get; }
-    // public ICommand ToggleCommand => new DelegateCommand<AppChecker>(item => 
-    // {
-    //     item.IsRunning = !item.IsRunning;
-    // });
+   
     public bool IsLoading
     {
         get => _isLoading;
@@ -52,6 +69,38 @@ public class VmAppList:BaseVm
     {
         LoadApps();
     }
+    
+    private void UpdateApp(object sender = null, EventArgs? e = null)
+    {
+        try
+        {
+            var activeApps = _monitorService.GetFilteredVisibleApplications(AppM).ToList();
+            var runningByPath = activeApps.ToDictionary(a => a.Path, a => a.StartTime);
+
+            foreach (var item in AppM)
+            {
+                if (runningByPath.TryGetValue(item.Path, out var startTime))
+                {
+                    item.IsRunning = true;
+                    item.StartTime = startTime;
+                }
+                else
+                {
+                    item.IsRunning = false;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            throw;
+        }
+    }
+    //TODO 1) обновлять путь из метода GetAllInstalledApplications() при загрузке
+    //TODO 2) сделать запуск и остановку приложения
+    //TODO 2.1) Менять цвет кнопки
+    //TODO 3) Сделать запись в БД общее время(TOTAL TIME)
+   
     private async Task LoadApps()
     {
         try
@@ -76,11 +125,11 @@ public class VmAppList:BaseVm
                      StartTime = item.StartTime,
                  });
              }
-            
+           
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            MessageBox.Show(e.Message);
+            MessageBox.Show(ex.Message);
             throw;
         }
         finally
@@ -91,6 +140,11 @@ public class VmAppList:BaseVm
     private async Task DeleteApp(ApplicationInfo app)
     {
         await _favoriteAppService.DeleteAsync(app.id);
-        LoadApps();
+        await LoadApps();
+    }
+    public void Dispose()
+    {
+        _timer.Tick -= Timer_Tick; 
+        _timer.Stop();
     }
 }

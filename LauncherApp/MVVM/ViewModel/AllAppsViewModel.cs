@@ -65,14 +65,21 @@ public class AllAppsViewModel : BaseVm
     private void StartTimer()
     {
         _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        _timer.Tick += (s, e) => Applications.ToList().ForEach(a => a.Info.RefreshDuration());
+        _timer.Tick += Timer_Tick;
         _timer.Start();
+    }
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+        foreach (var wrapper in Applications)
+        {
+            wrapper.Info.RefreshDuration();
+        }
     }
     private async Task LoadFavorites()
     {
         var favorites = await _favoriteService.LoadAppsAsync();
         _favoriteKeys = new HashSet<string>(favorites.Select(f => $"{f.Path}"));
-        Applications.ToList().ForEach(a => a.IsFavorite = _favoriteKeys.Contains($"{a.Info.Name}|{a.Info.Path}"));
+        Applications.ToList().ForEach(a => a.IsFavorite = _favoriteKeys.Contains($"{a.Info.Path}"));
     }
     private void UpdateApps(object sender = null, EventArgs e = null)
     {
@@ -210,5 +217,10 @@ public class AllAppsViewModel : BaseVm
         {
             _notification.ShowError($"Manual add error: {ex.Message}");
         }
+    }
+    public void Dispose()
+    {
+        _timer.Tick -= Timer_Tick; // Important for proper cleanup
+        _timer.Stop();
     }
 }

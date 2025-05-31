@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     "net7.0-windows7.0": {
+      "CalcBinding/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "DynamicExpresso.Core": "2.3.1"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/CalcBinding.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/CalcBinding.dll": {}
+        }
+      },
+      "DynamicExpresso.Core/2.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/DynamicExpresso.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DynamicExpresso.Core.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -713,6 +734,35 @@
     }
   },
   "libraries": {
+    "CalcBinding/2.5.2": {
+      "sha512": "hbMnS12GUmWTFVROhKJMAQNv5Cqx+AjVGOGGjUOidEaRQ5oGr87PCZih5kfEA/8qlRMzpBsMPQ0fiOahPWwmXQ==",
+      "type": "package",
+      "path": "calcbinding/2.5.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "calcbinding.2.5.2.nupkg.sha512",
+        "calcbinding.nuspec",
+        "lib/net40/CalcBinding.dll",
+        "lib/net45/CalcBinding.dll",
+        "lib/netcoreapp3.0/CalcBinding.dll"
+      ]
+    },
+    "DynamicExpresso.Core/2.3.1": {
+      "sha512": "gAoOdAA7KypwC2aEWbm72ZcNj9ERn0GBrFyFrLm9tRZGd+z1rgnKlh+BtWJi9X32ldzOwItY/Ty5ao6CqbG5ig==",
+      "type": "package",
+      "path": "dynamicexpresso.core/2.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dynamicexpresso.core.2.3.1.nupkg.sha512",
+        "dynamicexpresso.core.nuspec",
+        "lib/net45/DynamicExpresso.Core.dll",
+        "lib/net461/DynamicExpresso.Core.dll",
+        "lib/netstandard2.0/DynamicExpresso.Core.dll"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -1712,6 +1762,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
+      "CalcBinding >= 2.5.2",
       "MediatR >= 12.5.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.5",
@@ -1767,6 +1818,10 @@
       "net7.0-windows7.0": {
         "targetAlias": "net7.0-windows",
         "dependencies": {
+          "CalcBinding": {
+            "target": "Package",
+            "version": "[2.5.2, )"
+          },
           "MediatR": {
             "target": "Package",
             "version": "[12.5.0, )"
