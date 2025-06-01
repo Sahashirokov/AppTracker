@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 A:\Git\Debug\LauncherApp\LauncherApp\App.xaml
-72110468619
+8-1953231383
 
 62589408689
 230-1093225826
-MainWindow.xaml;MVVM\View\Control\HeaderControl.xaml;MVVM\View\Pages\AllAppsPage.xaml;MVVM\View\Pages\FavoritePage.xaml;styles\ButtonStyles.xaml;styles\LoadingSpinner.xaml;styles\TextStyles.xaml;
+MainWindow.xaml;MVVM\View\Control\HeaderControl.xaml;MVVM\View\Pages\AllAppsPage.xaml;MVVM\View\Pages\FavoritePage.xaml;styles\ButtonStyles.xaml;styles\LoadingSpinner.xaml;styles\SearchBoxStyles.xaml;styles\TextStyles.xaml;
 
 False
 

@@ -10,6 +10,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="/styles/LoadingSpinner.xaml"/>
+                <ResourceDictionary Source="/styles/SearchBoxStyles.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
             <local:ViewModelLocator x:Key="ViewModelLocator" />
             <!-- Локальные ресурсы -->

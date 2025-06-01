@@ -24,14 +24,33 @@ public class AllAppsViewModel : BaseVm
     private readonly INotificationService _notification;
     private readonly IMessenger _messenger;
     
-    private ObservableCollection<ApplicationInfoWrapper> _apps = new();
+    private ObservableCollection<ApplicationInfoWrapper> _allApplications = new();
+    private ObservableCollection<ApplicationInfoWrapper> _filteredApplications = new();
     private HashSet<string> _favoriteKeys = new();
     private DispatcherTimer _timer;
+    private string _searchApp;
+    public string SearchApp
+    {
+        get => _searchApp;
+        set
+        {
+            if (SetField(ref _searchApp, value))
+            {
+               FilterApplications();
+            }
+        }
+    }
 
     public ObservableCollection<ApplicationInfoWrapper> Applications
     {
-        get => _apps;
-        set => SetField(ref _apps, value);
+        get => _filteredApplications;
+        set
+        {
+            if (SetField(ref _filteredApplications, value))
+            {
+                OnPropertyChanged();
+            }
+        }
     }
 
     public DelegateCommand<ApplicationInfoWrapper> AddToFavoriteCommand { get; }
@@ -81,90 +100,92 @@ public class AllAppsViewModel : BaseVm
         _favoriteKeys = new HashSet<string>(favorites.Select(f => $"{f.Path}"));
         Applications.ToList().ForEach(a => a.IsFavorite = _favoriteKeys.Contains($"{a.Info.Path}"));
     }
-    private void UpdateApps(object sender = null, EventArgs e = null)
+  private void UpdateApps(object sender = null, EventArgs e = null)
+{
+    var installedApps = _monitorService.GetAllInstalledApplications().ToList();
+    var newApps = _monitorService.GetAllWindowedApplications().ToList();
+
+    Application.Current.Dispatcher.Invoke(() =>
     {
-       var installedApps = _monitorService.GetAllInstalledApplications().ToList();
-       var filteredApps = installedApps.ToList();
-       Console.WriteLine($"{installedApps.Count} installed applications, {filteredApps.Count} applications");
-        var newApps = _monitorService.GetAllWindowedApplications().ToList();
-
-        Application.Current.Dispatcher.Invoke(() =>
+        var currentApps = _allApplications.ToDictionary(a => a.Info.Path);
+        
+        foreach (var installedApp in installedApps)
         {
-            // Обновление существующих
-            var currentApps = Applications.ToDictionary(a => a.Info.Path);
-            
-            // 2. Обрабатываем установленные приложения
-            foreach (var installedApp in filteredApps)
-            {
-                var runningApp = newApps.FirstOrDefault(r => 
-                    r.Path.Equals(installedApp.Path, StringComparison.OrdinalIgnoreCase));
+            var runningApp = newApps.FirstOrDefault(r => 
+                r.Path.Equals(installedApp.Path, StringComparison.OrdinalIgnoreCase));
 
-                if (currentApps.TryGetValue(installedApp.Path, out var existingWrapper))
+            if (currentApps.TryGetValue(installedApp.Path, out var existingWrapper))
+            {
+                existingWrapper.Info.IsRunning = runningApp != null;
+                if (runningApp != null)
                 {
-                    // Обновляем статус и время
-                    existingWrapper.Info.IsRunning = runningApp != null;
-                    if (runningApp != null)
+                    existingWrapper.Info.StartTime = runningApp.StartTime;
+                }
+            }
+            else
+            {
+                _allApplications.Add(new ApplicationInfoWrapper(
+                    new ApplicationInfo 
                     {
-                        existingWrapper.Info.StartTime = runningApp.StartTime;
-                    }
-                }
-                else
-                {
-                    // Добавляем новое установленное приложение
-                  //  Console.WriteLine(installedApp);
-                    Applications.Add(new ApplicationInfoWrapper(
-                        new ApplicationInfo 
-                        {
-                            Name = installedApp.Name,
-                            WindowTitle = installedApp.Name,
-                            Path = installedApp.Path,
-                            Icon = installedApp.Icon,
-                            IsRunning = runningApp != null,
-                            StartTime = runningApp?.StartTime ?? DateTime.MinValue
-                        }, 
-                        _favoriteKeys.Contains($"{installedApp.Path}"))
-                    );
-                }
+                        Name = installedApp.Name,
+                        WindowTitle = installedApp.Name,
+                        Path = installedApp.Path,
+                        Icon = installedApp.Icon,
+                        IsRunning = runningApp != null,
+                        StartTime = runningApp?.StartTime ?? DateTime.MinValue
+                    }, 
+                    _favoriteKeys.Contains(installedApp.Path))
+                );
             }
-            foreach (var app in newApps)
+        }
+
+        // Обработка работающих приложений
+        foreach (var app in newApps)
+        {
+            if (currentApps.TryGetValue(app.Path, out var existing))
             {
-                if (currentApps.TryGetValue(app.Path, out var existing))
+                existing.Info.WindowTitle = app.WindowTitle;
+                existing.Info.StartTime = app.StartTime;
+            }
+            else
+            {
+                var isInstalled = installedApps.Any(i => 
+                    i.Path.Equals(app.Path, StringComparison.OrdinalIgnoreCase));
+                if (!isInstalled && !_allApplications.Any(a => 
+                        a.Info.Path.Equals(app.Path, StringComparison.OrdinalIgnoreCase)))
                 {
-                    existing.Info.WindowTitle = app.WindowTitle;
-                    existing.Info.StartTime = app.StartTime;
-                }
-                else
-                {
-                    var isInstalled = installedApps.Any(i => 
-                        i.Path.Equals(app.Path, StringComparison.OrdinalIgnoreCase));
-                    if (!isInstalled && !Applications.Any(a =>
-                            a.Info.Path.Equals(app.Path, StringComparison.OrdinalIgnoreCase)))
-                    {
-                        Applications.Add(new ApplicationInfoWrapper(app,
-                            _favoriteKeys.Contains($"{app.Path}")));
-                    }
+                    _allApplications.Add(new ApplicationInfoWrapper(app, 
+                        _favoriteKeys.Contains(app.Path)));
                 }
             }
-            // Удаление отсутствующих
-            var toRemove = Applications
-                .Where(a => 
-                    !installedApps.Any(i => i.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)) && 
-                    !newApps.Any(r => r.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)))
-                .ToList();
-            foreach (var item in toRemove)
-            {
-                Applications.Remove(item);
-            }
-            var sortedApps = Applications.OrderByDescending(item => item.Info.IsRunning)
-                .ToList();
-            Applications.Clear();
-            foreach (var item in sortedApps)
-            {
-                Applications.Add(item);
-            }
-        });
+        }
+
+        // Удаление отсутствующих
+        var toRemove = _allApplications
+            .Where(a => 
+                !installedApps.Any(i => i.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)) && 
+                !newApps.Any(r => r.Path.Equals(a.Info.Path, StringComparison.OrdinalIgnoreCase)))
+            .ToList();
+        foreach (var item in toRemove)
+        {
+            _allApplications.Remove(item);
+        }
+
+        FilterApplications(); // Обновляем фильтр после всех изменений
+    });
+}
+    private void FilterApplications()
+    {
+        var filtered = string.IsNullOrEmpty(_searchApp)
+            ? _allApplications
+            : _allApplications.Where(a => 
+                a.Info.Name.IndexOf(_searchApp, StringComparison.OrdinalIgnoreCase) >= 0);
+        Applications.Clear();
+        foreach (var app in filtered.OrderByDescending(a => a.Info.IsRunning))
+        {
+            Applications.Add(app);
+        }
     }
-
     private async void AddToFavorite(ApplicationInfoWrapper wrapper)
     {
         try

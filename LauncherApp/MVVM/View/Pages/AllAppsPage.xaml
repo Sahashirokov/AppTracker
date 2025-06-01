@@ -21,6 +21,13 @@
                         Width="164" Height="36" VerticalAlignment="Center" HorizontalAlignment="left"
                         Margin="20 0 0 0"
                         ></Button>
+                <TextBox Text="{Binding SearchApp, UpdateSourceTrigger=PropertyChanged}"
+                         Width="240px" Height="40px" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Margin="200 5 5 5" Padding="0 0 0 0"
+                         Style="{StaticResource ModernTextBox}"
+                >
+                    
+                </TextBox>
             </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding Applications}" 
                   HorizontalContentAlignment="Stretch"
