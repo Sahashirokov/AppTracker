@@ -12,6 +12,7 @@ public interface IFavoriteAppService
     Task AddAsync(AppM app);
     Task<AppM> GetAppByIdAsync(int id);
     Task DeleteAsync(int id);
+    Task UpdateAsync(AppM app);
 }
 
 public class FavoriteAppService: IFavoriteAppService
@@ -47,6 +48,10 @@ public class FavoriteAppService: IFavoriteAppService
             await _favoriteAppRepository.DeleteAsync(appToDelete);
         }
        
+    }
+    public async Task UpdateAsync(AppM app)
+    {
+        await _favoriteAppRepository.UpdateAsync(app);
     }
     public async Task<bool> CheckIfExistsAsync(string name, string path)
         => await _favoriteAppRepository.ExistsAsync(name, path);

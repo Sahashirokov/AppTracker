@@ -10,6 +10,7 @@ public class ApplicationInfo:BaseVm
     private string _path;
     private ImageSource _icon;
     private bool _isRunning;
+    private TimeSpan _totalTime;
     public int id { get; set; }
     public int ProcessId { get; set; }
     public string Name { get; set; }
@@ -45,6 +46,18 @@ public class ApplicationInfo:BaseVm
     }
     
     public TimeSpan Duration => DateTime.Now - StartTime;
+    public TimeSpan TotalTime
+    {
+        get => _totalTime;
+        set
+        {
+            if(SetField(ref _totalTime, value))
+            {
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public string? Publisher { get; set; }
     public string? InstallLocation { get; set; }
     public bool IsRunning

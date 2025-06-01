@@ -41,8 +41,9 @@
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="{Binding Icon}" Width="42" Height="42" Margin="10 0 0 0"/>
                         <Button Grid.Column="1"
+                                x:Name="StartOrStop"
                                 Content="{Binding IsRunning,Converter={StaticResource BoolToStartTextConverter}}"
-                                Command="{Binding DataContext.ToggleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
+                                Command="{Binding DataContext.ToggleAppCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
                                 CommandParameter="{Binding }"
                                 Style="{StaticResource CommonStartStyle}"
         
@@ -78,7 +79,7 @@
                  FontSize="16"
                  FontWeight="Bold"
                  Foreground="White"/>
-            <Run Text="{Binding StartTime,Mode=OneWay,StringFormat={}{0:hh\\:mm\\:ss}}" 
+            <Run Text="{Binding StartTime,Mode=OneWay,StringFormat={}{0:HH\\:mm\\:ss}}" 
                  FontFamily="Segoe UI"
                  FontSize="14"
                  Foreground="White" />
@@ -107,7 +108,7 @@
                  FontSize="16"
                  FontWeight="Bold"
                  Foreground="White"/>
-            <Run Text="{Binding TotalTime}"
+            <Run Text="{Binding TotalTime,StringFormat={}{0:hh\\:mm\\:ss}}"
                  FontFamily="Segoe UI"
                  FontSize="14"
                  Foreground="White"/>

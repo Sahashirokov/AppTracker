@@ -60,7 +60,21 @@ public class ApplicationMonitorService: IApplicationMonitorService
             .Select(p => CreateApplicationInfo(p))
             .Where(app => app != null)
             .DistinctBy(p => p.Path);
-
+    public IEnumerable<ApplicationInfo> GetAllRunningApplications()
+    {
+        return Process.GetProcesses()
+            .Where(p => !string.IsNullOrEmpty(p.MainWindowTitle) && p.MainWindowHandle != IntPtr.Zero)
+            .Select(p => new ApplicationInfo
+            {
+                ProcessId = p.Id,
+                Name = p.ProcessName,
+                Path = p.MainModule?.FileName ?? string.Empty,
+                WindowTitle = p.MainWindowTitle,
+                StartTime = p.StartTime,
+                IsRunning = true,
+            })
+            .Where(app => !string.IsNullOrEmpty(app.Path));
+    }
     private ApplicationInfo CreateApplicationInfo(Process p)
     {
         try

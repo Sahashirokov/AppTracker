@@ -8,59 +8,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc8285a8-bac6-47b2-8e1b-7228c0ae8d8c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/ApplicationCollector.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/Interface/IApplicationCollector.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/Interface/IProcessService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/Interface/IRegistryService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/Interface/IWindowEnumerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/ProcessService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/RegistryService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LauncherApp/Services/MonitorService/WindowEnumerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LauncherApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/LauncherApp/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/LauncherApp/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/LauncherApp/FileContentIndex/5a216abc-3d08-4787-8e63-31d9330f9e38.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/LauncherApp/FileContentIndex/d28815e0-d44e-4a42-b23c-ec81b55143f4.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/LauncherApp/FileContentIndex/d3cc344e-2551-4df8-8a21-f13e96d4b203.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/LauncherApp/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/LauncherApp/v17/.futdcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/LauncherApp/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/LauncherApp/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/launcherapp.metadata.v6.1" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/launcherapp.metadata.v6.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/launcherapp.projects.v6.1" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/launcherapp.projects.v6.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/LauncherApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/LauncherApp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/Converters/BoolToStartTextConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/Converters/BoolToStartTextConverter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/Model/ApplicationInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/Model/ApplicationInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/AllAppsPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/AllAppsPage.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/FavoritePage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/View/Pages/FavoritePage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/AllAppsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/AllAppsViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/VmAppList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/MVVM/ViewModel/VmAppList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/Repository/FavoriteAppRepository/AppFavoriteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Repository/FavoriteAppRepository/AppFavoriteRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/Services/ApplicationMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Services/ApplicationMonitorService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/Services/IApplicationMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Services/IApplicationMonitorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/ViewModelLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/ViewModelLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/Services/IFavoriteAppService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/Services/IFavoriteAppService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/bin/Debug/net7.0-windows/LauncherApp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.designer.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.designer.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.g.resources" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.g.resources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp_MarkupCompile.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/LauncherApp_MarkupCompile.lref" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.baml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/AllAppsPage.g.i.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/FavoritePage.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/FavoritePage.baml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/FavoritePage.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/FavoritePage.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/FavoritePage.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/MVVM/View/Pages/FavoritePage.g.i.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/ref/LauncherApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/refint/LauncherApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/LauncherApp.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/LauncherApp.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/styles/ButtonStyles.baml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/obj/Debug/net7.0-windows/styles/ButtonStyles.baml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LauncherApp/styles/ButtonStyles.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/LauncherApp/styles/ButtonStyles.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,27 +101,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.LauncherApp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.36788446&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;SQL Inserts&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.LauncherApp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "XThreadsFramesViewSplitterKey": "0.36788446",
+    "database.data.extractors.current.export.id": "SQL Inserts",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="LauncherApp" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -253,7 +221,10 @@
       <workItem from="1748613283529" duration="1028000" />
       <workItem from="1748628150268" duration="2444000" />
       <workItem from="1748670712781" duration="3261000" />
-      <workItem from="1748677053344" duration="2626000" />
+      <workItem from="1748677053344" duration="2834000" />
+      <workItem from="1748704357320" duration="1314000" />
+      <workItem from="1748706886841" duration="176000" />
+      <workItem from="1748787483246" duration="2727000" />
     </task>
     <task id="LOCAL-00001" summary="git init Start Project App Tracker">
       <option name="closed" value="true" />

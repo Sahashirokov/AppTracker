@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -28,6 +29,8 @@ public class VmAppList:BaseVm
     private bool _isLoading;
     private readonly IMessenger _messenger;
     public DelegateCommand<ApplicationInfo> RemoveApp { get; }
+    public ICommand ToggleAppCommand { get; }
+    private Dictionary<string, Process> _processes = new();
     private readonly IApplicationMonitorService _monitorService;
     private DispatcherTimer _timer;
     public VmAppList(IFavoriteAppService favoriteAppService,IMessenger messenger,IApplicationMonitorService monitor)
@@ -38,13 +41,83 @@ public class VmAppList:BaseVm
         _monitorService = monitor;
         LoadAppsCommand = new DelegateCommand(async () => await LoadApps());
         RemoveApp = new DelegateCommand<ApplicationInfo>(async (item)=> await DeleteApp(item),(item)=>item != null);
+        ToggleAppCommand = new DelegateCommand<ApplicationInfo>(ToggleApplication);
         _ = LoadApps();
         _messenger.Register<RefreshFavoritesMessage>(this, OnRefreshRequested);
         StartTimer();
         _monitorService.ApplicationsChanged += UpdateApp;
     }
-    
+    private void ToggleApplication(ApplicationInfo app)
+    {
+        if (app == null || string.IsNullOrEmpty(app.Path)) return;
 
+        if (_processes.TryGetValue(app.Path, out var process) && !process.HasExited)
+        {
+            StopApplication(app, process);
+        }
+        else
+        {
+            StartApplication(app);
+        }
+    }
+    private void StartApplication(ApplicationInfo app)
+    {
+        if (string.IsNullOrEmpty(app.Path) || !File.Exists(app.Path))
+        {
+            MessageBox.Show("Путь к приложению недействителен.");
+            return;
+        }
+
+        try
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = app.Path,
+                UseShellExecute = true
+            };
+
+            var process = Process.Start(startInfo);
+            _processes[app.Path] = process;
+
+            process.EnableRaisingEvents = true;
+            process.Exited += (s, e) =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    app.IsRunning = false;
+                    _processes.Remove(app.Path);
+                });
+            };
+
+            app.IsRunning = true;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Не удалось запустить приложение: {ex.Message}");
+        }
+    }
+    private async void StopApplication(ApplicationInfo app, Process process)
+    {
+        try
+        {
+            if (!process.HasExited)
+            {
+                process.Kill();
+                process.WaitForExit();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ошибка остановки: {ex.Message}");
+        }
+        finally
+        {
+            await UpdateTotalTimeAsync(app);
+            process.Dispose();
+            _processes.Remove(app.Path);
+            app.IsRunning = false;
+        }
+    }
     private void StartTimer()
     {
         _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
@@ -70,19 +143,40 @@ public class VmAppList:BaseVm
         LoadApps();
     }
     
-    private void UpdateApp(object sender = null, EventArgs? e = null)
+    private async void UpdateApp(object sender = null, EventArgs? e = null)
     {
         try
         {
-            var activeApps = _monitorService.GetFilteredVisibleApplications(AppM).ToList();
-            var runningByPath = activeApps.ToDictionary(a => a.Path, a => a.StartTime);
+            // Получаем все работающие процессы
+            var runningApps = _monitorService.GetAllRunningApplications()
+                .ToDictionary(a => a.Path, StringComparer.OrdinalIgnoreCase);
 
+            // Обновляем состояние для каждого приложения
             foreach (var item in AppM)
             {
-                if (runningByPath.TryGetValue(item.Path, out var startTime))
+                if (runningApps.TryGetValue(item.Path, out var runningApp))
                 {
                     item.IsRunning = true;
-                    item.StartTime = startTime;
+                    item.StartTime = runningApp.StartTime;
+
+                    // Если процесс ещё не отслеживается
+                    if (!_processes.ContainsKey(item.Path))
+                    {
+                        var process = Process.GetProcessById(runningApp.ProcessId);
+                        _processes[item.Path] = process;
+
+                        // Подписываемся на завершение процесса
+                        process.EnableRaisingEvents = true;
+                        process.Exited += async (s, ev) =>
+                        {
+                            await Application.Current.Dispatcher.InvokeAsync(async () =>
+                            {
+                                await UpdateTotalTimeAsync(item); // Теперь await работает
+                                item.IsRunning = false;
+                                _processes.Remove(item.Path);
+                            });
+                        };
+                    }
                 }
                 else
                 {
@@ -92,8 +186,25 @@ public class VmAppList:BaseVm
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            throw;
+            Console.WriteLine($"Ошибка обновления состояния: {ex.Message}");
+        }
+    }
+    private async Task UpdateTotalTimeAsync(ApplicationInfo app)
+    {
+        if (app.StartTime == default) return;
+
+        var duration = DateTime.Now - app.StartTime;
+        app.TotalTime += duration;
+
+        try
+        {
+            var dbApp = await _favoriteAppService.GetAppByIdAsync(app.id);
+            dbApp.TotalTime = app.TotalTime;
+            await _favoriteAppService.UpdateAsync(dbApp);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ошибка сохранения времени: {ex.Message}");
         }
     }
     //TODO 1) обновлять путь из метода GetAllInstalledApplications() при загрузке
@@ -123,6 +234,7 @@ public class VmAppList:BaseVm
                      Path = item.Path,
                      WindowTitle = item.WindowTitle,
                      StartTime = item.StartTime,
+                     TotalTime = item.TotalTime,
                  });
              }
            

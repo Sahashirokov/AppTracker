@@ -10,6 +10,7 @@ public interface IApplicationMonitorService
     IEnumerable<ApplicationInfo> GetVisibleApplications();
     IEnumerable<ApplicationInfo> GetFilteredVisibleApplications(ObservableCollection<ApplicationInfo> applicationInfos);
     IEnumerable<ApplicationInfo> GetAllWindowedApplications();
+    IEnumerable<ApplicationInfo> GetAllRunningApplications();
     IEnumerable<ApplicationInfo> GetAllInstalledApplications();
     event EventHandler ApplicationsChanged;
 }

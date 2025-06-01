@@ -33,9 +33,10 @@ public class AppFavoriteRepository:IFavoriteAppRepository
     public async Task<bool> ExistsAsync(string name, string path)
         => await _dbContext.AppMs
             .AnyAsync(a => a.Name == name && a.Path == path);
-    public Task UpdateAsync(AppM entity)
+    public async Task UpdateAsync(AppM entity)
     {
-        throw new System.NotImplementedException();
+        _dbContext.AppMs.Update(entity);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(AppM? entity)
@@ -46,7 +47,7 @@ public class AppFavoriteRepository:IFavoriteAppRepository
             await _dbContext.SaveChangesAsync();
         }
     }
-
+    
     public Task<IEnumerable<AppM>> GetActiveAppsAsync()
     {
         throw new System.NotImplementedException();
