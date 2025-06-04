@@ -48,7 +48,7 @@ public class IconExtractor
     {
         try
         {
-            return new BitmapImage(new Uri("/assets/menu2.png"));
+            return new BitmapImage(new Uri("/assets/menu2.ico"));
         }
         catch
         {

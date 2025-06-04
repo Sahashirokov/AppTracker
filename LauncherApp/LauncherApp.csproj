@@ -5,6 +5,10 @@
         <TargetFramework>net7.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>assets/AppTrackerIcon.ico</ApplicationIcon>
+     
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,6 +20,7 @@
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Windows.Compatibility" Version="7.0.3" />
       <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
       <PackageReference Include="SharpVectors.Wpf" Version="1.8.4.2" />
@@ -35,9 +40,14 @@
       <Resource Include="assets\svg\close.svg">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
-      <None Update="assets\menu2.png">
+      <None Update="assets\menu2.ico">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="assets\AppTrackerIcon.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Remove="assets\AppTrackerIcon.ico" />
+      <None Remove="assets\suta-shin_logo.ico" />
     </ItemGroup>
 
     <ItemGroup>
@@ -55,6 +65,12 @@
       <Page Update="MVVM\View\Control\HeaderControl.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="assets\AppTrackerIcon.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

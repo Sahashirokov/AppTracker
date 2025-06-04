@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LauncherApp"
              xmlns:converters="clr-namespace:LauncherApp.Converters"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+            
+             >
+    <!-- ShutdownMode="OnExplicitShutdown" -->
     <Application.Resources>
         <ResourceDictionary>
             <!-- Внешние стили -->

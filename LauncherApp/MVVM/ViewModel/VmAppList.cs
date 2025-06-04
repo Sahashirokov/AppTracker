@@ -247,12 +247,14 @@ public class VmAppList:BaseVm
         finally
         {
             IsLoading = false;
+            UpdateApp();
         }
     }
     private async Task DeleteApp(ApplicationInfo app)
     {
         await _favoriteAppService.DeleteAsync(app.id);
         await LoadApps();
+        _messenger.Send(new RefreshAllApps());
     }
     public void Dispose()
     {

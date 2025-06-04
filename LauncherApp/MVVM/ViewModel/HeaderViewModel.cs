@@ -4,6 +4,7 @@ using LauncherApp.Command;
 using LauncherApp.MVVM.Model;
 using LauncherApp.Services;
 using LauncherApp.MVVM.View.Pages;
+using LauncherApp.Services.ManagerWindow;
 
 namespace LauncherApp.MVVM.ViewModel;
 

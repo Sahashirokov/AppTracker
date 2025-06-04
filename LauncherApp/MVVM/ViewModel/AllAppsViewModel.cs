@@ -29,6 +29,8 @@ public class AllAppsViewModel : BaseVm
     private HashSet<string> _favoriteKeys = new();
     private DispatcherTimer _timer;
     private string _searchApp;
+    private readonly IStartupService _startupService;
+    private bool _isAutoStartEnabled;
     public string SearchApp
     {
         get => _searchApp;
@@ -59,22 +61,49 @@ public class AllAppsViewModel : BaseVm
     public AllAppsViewModel(IApplicationMonitorService monitor, 
                            IFavoriteAppService favorite,
                            INotificationService notification,
-                           IMessenger messenger)
+                           IMessenger messenger,IStartupService startupService)
     {
         _monitorService = monitor;
         _favoriteService = favorite;
         _notification = notification;
         _messenger = messenger;
-
+        _startupService = startupService;
+        _isAutoStartEnabled = CheckAutoStartStatus();
         _monitorService.ApplicationsChanged += UpdateApps;
-        
+        _messenger.Register<RefreshAllApps>(this, onRefreshAllApps);
         AddToFavoriteCommand = new DelegateCommand<ApplicationInfoWrapper>(AddToFavorite, 
             app => !_favoriteKeys.Contains($"{app.Info.Name}|{app.Info.Path}"));
         ManualAddToFavoriteCommand = new DelegateCommand(AddManualFavorite);
         InitializeAsync();
         StartTimer();
     }
+    public bool IsAutoStartEnabled
+    {
+        get => _isAutoStartEnabled;
+        set
+        {
+            if (value != _isAutoStartEnabled)
+            {
+                _isAutoStartEnabled = value;
+                if (value) _startupService.EnableAutoStart();
+                else _startupService.DisableAutoStart();
+                OnPropertyChanged();
+            }
+        }
+    }
 
+    private bool CheckAutoStartStatus()
+    {
+        using (var key =Registry.CurrentUser.OpenSubKey(StartupService.KeyPath))
+        {
+            return key?.GetValue(StartupService.AppName) != null;
+        }
+    }
+    private async void onRefreshAllApps(RefreshAllApps message)
+    {
+        await LoadFavorites();
+        UpdateApps();
+    }
     private async void InitializeAsync()
     {
         await LoadFavorites();

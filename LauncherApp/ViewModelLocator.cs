@@ -7,6 +7,7 @@ using LauncherApp.MVVM.ViewModel;
 using LauncherApp.MVVM.View.Pages;
 using LauncherApp.Repository.FavoriteAppRepository;
 using LauncherApp.Services;
+using LauncherApp.Services.ManagerWindow;
 using LauncherApp.Services.MonitorService;
 using LauncherApp.Services.MonitorService.Interface;
 using LauncherApp.ViewModel;
@@ -34,6 +35,8 @@ public class ViewModelLocator
             ServiceLifetime.Singleton);
         
         services.AddSingleton<IWindowService, WindowService>();
+        services.AddSingleton<IStartupService, StartupService>();
+        
         services.AddSingleton<PageServices>();
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddScoped<IFavoriteAppRepository, AppFavoriteRepository>();
