@@ -179,3 +179,10 @@ A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\runtimes\win\lib\n
 A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\assets\menu2.ico
 A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\assets\AppTrackerIcon.ico
 A:\Git\Debug\LauncherApp\LauncherApp\obj\Debug\net7.0-windows\LauncherApp_Content.g.cs
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Microsoft.Toolkit.Uwp.Notifications.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Vanara.Core.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Vanara.PInvoke.Gdi32.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Vanara.PInvoke.Kernel32.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Vanara.PInvoke.Shared.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\Vanara.PInvoke.User32.dll
+A:\Git\Debug\LauncherApp\LauncherApp\bin\Debug\net7.0-windows\fr\Vanara.Core.resources.dll

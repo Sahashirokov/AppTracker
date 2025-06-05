@@ -18,6 +18,7 @@ using LauncherApp.Messanger;
 using LauncherApp.Model;
 using LauncherApp.MVVM.Model;
 using LauncherApp.Services;
+using LauncherApp.Services.ManagerWindow;
 using MediatR;
 
 namespace LauncherApp.ViewModel;
@@ -33,7 +34,8 @@ public class VmAppList:BaseVm
     private Dictionary<string, Process> _processes = new();
     private readonly IApplicationMonitorService _monitorService;
     private DispatcherTimer _timer;
-    public VmAppList(IFavoriteAppService favoriteAppService,IMessenger messenger,IApplicationMonitorService monitor)
+    private readonly ISystemNotificationServiceNotificationService _systemServiceNotificationService;
+    public VmAppList(IFavoriteAppService favoriteAppService,IMessenger messenger,IApplicationMonitorService monitor,ISystemNotificationServiceNotificationService systemServiceNotificationService)
     {
         _favoriteAppService = favoriteAppService;
         AppM = new ObservableCollection<ApplicationInfo>();
@@ -46,6 +48,12 @@ public class VmAppList:BaseVm
         _messenger.Register<RefreshFavoritesMessage>(this, OnRefreshRequested);
         StartTimer();
         _monitorService.ApplicationsChanged += UpdateApp;
+       _systemServiceNotificationService = systemServiceNotificationService;
+       
+    }
+    private void ExecuteShowNotification(string title,string message)
+    {
+        _systemServiceNotificationService.ShowNotification( title,message);
     }
     private void ToggleApplication(ApplicationInfo app)
     {
@@ -150,21 +158,25 @@ public class VmAppList:BaseVm
             // Получаем все работающие процессы
             var runningApps = _monitorService.GetAllRunningApplications()
                 .ToDictionary(a => a.Path, StringComparer.OrdinalIgnoreCase);
-
+           
             // Обновляем состояние для каждого приложения
             foreach (var item in AppM)
             {
                 if (runningApps.TryGetValue(item.Path, out var runningApp))
                 {
+                    // if (!item.IsRunning)
+                    // {
+                    //     ExecuteShowNotification($"Запущен:{item.Name}", $"{item.StartTime.ToShortTimeString()}");
+                    // }
                     item.IsRunning = true;
                     item.StartTime = runningApp.StartTime;
-
+                     
                     // Если процесс ещё не отслеживается
                     if (!_processes.ContainsKey(item.Path))
                     {
                         var process = Process.GetProcessById(runningApp.ProcessId);
                         _processes[item.Path] = process;
-
+                       
                         // Подписываемся на завершение процесса
                         process.EnableRaisingEvents = true;
                         process.Exited += async (s, ev) =>
@@ -207,11 +219,6 @@ public class VmAppList:BaseVm
             MessageBox.Show($"Ошибка сохранения времени: {ex.Message}");
         }
     }
-    //TODO 1) обновлять путь из метода GetAllInstalledApplications() при загрузке
-    //TODO 2) сделать запуск и остановку приложения
-    //TODO 2.1) Менять цвет кнопки
-    //TODO 3) Сделать запись в БД общее время(TOTAL TIME)
-   
     private async Task LoadApps()
     {
         try

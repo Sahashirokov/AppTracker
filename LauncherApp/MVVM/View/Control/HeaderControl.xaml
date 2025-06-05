@@ -20,7 +20,6 @@
                 Orientation="Horizontal"
                 VerticalAlignment="Center"
                 Margin="0 0 10 0">
-                
                 <Button 
                     Style="{StaticResource MinimizeButtonStyle}"
                     Content="/assets/svg/minus.svg"

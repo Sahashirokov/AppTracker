@@ -15,7 +15,7 @@ public class HeaderViewModel:BaseVm
     private readonly AppStateService _appState;
     private IDisposable _subscription;
     private string _title;
-
+    
     public HeaderViewModel(
         IWindowService windowService,
         INavigationService navigationService,AppStateService appState)
@@ -32,7 +32,9 @@ public class HeaderViewModel:BaseVm
         MinimizeCommand = new DelegateCommand(() => _windowService.Minimize());
         CloseCommand = new DelegateCommand(() => _windowService.Close());
         DragMoveCommand = new DelegateCommand<MouseButtonEventArgs>(OnDragMove);
+       
     }
+    
     private void OnDragMove(MouseButtonEventArgs e)
     {
         if (e?.ChangedButton == MouseButton.Left && e.ClickCount == 1)

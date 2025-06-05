@@ -14,7 +14,7 @@
                 <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="/styles/LoadingSpinner.xaml"/>
                 <ResourceDictionary Source="/styles/SearchBoxStyles.xaml"/>
-                
+                <!-- <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" /> -->
             </ResourceDictionary.MergedDictionaries>
             <local:ViewModelLocator x:Key="ViewModelLocator" />
             <!-- Локальные ресурсы -->

@@ -13,11 +13,13 @@
           "Microsoft.EntityFrameworkCore.Design": "7.0.5",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.5",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Microsoft.Toolkit.Uwp.Notifications": "7.1.3",
           "Microsoft.Windows.Compatibility": "7.0.3",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.135",
           "Newtonsoft.Json": "13.0.3",
           "SharpVectors.Wpf": "1.8.4.2",
-          "System.Drawing.Common": "7.0.0"
+          "System.Drawing.Common": "7.0.0",
+          "Vanara.PInvoke.User32": "4.1.3"
         },
         "runtime": {
           "LauncherApp.dll": {}
@@ -276,10 +278,21 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/3.1.0": {},
-      "Microsoft.Win32.Registry/4.7.0": {
+      "Microsoft.NETCore.Platforms/5.0.0": {},
+      "Microsoft.Toolkit.Uwp.Notifications/7.1.3": {
         "dependencies": {
-          "System.Security.AccessControl": "4.7.0",
+          "System.ValueTuple": "4.5.0"
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.Toolkit.Uwp.Notifications.dll": {
+            "assemblyVersion": "7.1.0.0",
+            "fileVersion": "7.1.3.1"
+          }
+        }
+      },
+      "Microsoft.Win32.Registry/5.0.0": {
+        "dependencies": {
+          "System.Security.AccessControl": "5.0.0",
           "System.Security.Principal.Windows": "5.0.0"
         }
       },
@@ -735,7 +748,7 @@
       },
       "System.Data.SqlClient/4.8.5": {
         "dependencies": {
-          "Microsoft.Win32.Registry": "4.7.0",
+          "Microsoft.Win32.Registry": "5.0.0",
           "System.Security.Principal.Windows": "5.0.0",
           "runtime.native.System.Data.SqlClient.sni": "4.7.0"
         },
@@ -972,9 +985,9 @@
           }
         }
       },
-      "System.Security.AccessControl/4.7.0": {
+      "System.Security.AccessControl/5.0.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0",
+          "Microsoft.NETCore.Platforms": "5.0.0",
           "System.Security.Principal.Windows": "5.0.0"
         }
       },
@@ -1151,6 +1164,7 @@
           }
         }
       },
+      "System.ValueTuple/4.5.0": {},
       "System.Web.Services.Description/4.9.0": {
         "runtime": {
           "lib/netstandard2.0/System.Web.Services.Description.dll": {
@@ -1203,6 +1217,65 @@
       "System.Windows.Extensions/7.0.0": {
         "dependencies": {
           "System.Drawing.Common": "7.0.0"
+        }
+      },
+      "Vanara.Core/4.1.3": {
+        "runtime": {
+          "lib/net7.0/Vanara.Core.dll": {
+            "assemblyVersion": "4.1.3.0",
+            "fileVersion": "4.1.3.0"
+          }
+        },
+        "resources": {
+          "lib/net7.0/fr/Vanara.Core.resources.dll": {
+            "locale": "fr"
+          }
+        }
+      },
+      "Vanara.PInvoke.Gdi32/4.1.3": {
+        "dependencies": {
+          "Vanara.PInvoke.Shared": "4.1.3"
+        },
+        "runtime": {
+          "lib/net7.0/Vanara.PInvoke.Gdi32.dll": {
+            "assemblyVersion": "4.1.3.0",
+            "fileVersion": "4.1.3.0"
+          }
+        }
+      },
+      "Vanara.PInvoke.Kernel32/4.1.3": {
+        "dependencies": {
+          "Vanara.PInvoke.Shared": "4.1.3"
+        },
+        "runtime": {
+          "lib/net7.0/Vanara.PInvoke.Kernel32.dll": {
+            "assemblyVersion": "4.1.3.0",
+            "fileVersion": "4.1.3.0"
+          }
+        }
+      },
+      "Vanara.PInvoke.Shared/4.1.3": {
+        "dependencies": {
+          "Microsoft.Win32.Registry": "5.0.0",
+          "Vanara.Core": "4.1.3"
+        },
+        "runtime": {
+          "lib/net7.0/Vanara.PInvoke.Shared.dll": {
+            "assemblyVersion": "4.1.3.0",
+            "fileVersion": "4.1.3.0"
+          }
+        }
+      },
+      "Vanara.PInvoke.User32/4.1.3": {
+        "dependencies": {
+          "Vanara.PInvoke.Gdi32": "4.1.3",
+          "Vanara.PInvoke.Kernel32": "4.1.3"
+        },
+        "runtime": {
+          "lib/net7.0/Vanara.PInvoke.User32.dll": {
+            "assemblyVersion": "4.1.3.0",
+            "fileVersion": "4.1.3.0"
+          }
         }
       }
     }
@@ -1388,19 +1461,26 @@
       "path": "microsoft.extensions.primitives/7.0.0",
       "hashPath": "microsoft.extensions.primitives.7.0.0.nupkg.sha512"
     },
-    "Microsoft.NETCore.Platforms/3.1.0": {
+    "Microsoft.NETCore.Platforms/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
-      "path": "microsoft.netcore.platforms/3.1.0",
-      "hashPath": "microsoft.netcore.platforms.3.1.0.nupkg.sha512"
+      "sha512": "sha512-VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+      "path": "microsoft.netcore.platforms/5.0.0",
+      "hashPath": "microsoft.netcore.platforms.5.0.0.nupkg.sha512"
     },
-    "Microsoft.Win32.Registry/4.7.0": {
+    "Microsoft.Toolkit.Uwp.Notifications/7.1.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KSrRMb5vNi0CWSGG1++id2ZOs/1QhRqROt+qgbEAdQuGjGrFcl4AOl4/exGPUYz2wUnU42nvJqon1T3U0kPXLA==",
-      "path": "microsoft.win32.registry/4.7.0",
-      "hashPath": "microsoft.win32.registry.4.7.0.nupkg.sha512"
+      "sha512": "sha512-A1dglAzb24gjehmb7DwGd07mfyZ1gacAK7ObE0KwDlRc3mayH2QW7cSOy3TkkyELjLg19OQBuhPOj4SpXET9lg==",
+      "path": "microsoft.toolkit.uwp.notifications/7.1.3",
+      "hashPath": "microsoft.toolkit.uwp.notifications.7.1.3.nupkg.sha512"
+    },
+    "Microsoft.Win32.Registry/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==",
+      "path": "microsoft.win32.registry/5.0.0",
+      "hashPath": "microsoft.win32.registry.5.0.0.nupkg.sha512"
     },
     "Microsoft.Win32.Registry.AccessControl/7.0.0": {
       "type": "package",
@@ -1710,12 +1790,12 @@
       "path": "system.runtime.caching/7.0.0",
       "hashPath": "system.runtime.caching.7.0.0.nupkg.sha512"
     },
-    "System.Security.AccessControl/4.7.0": {
+    "System.Security.AccessControl/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JECvTt5aFF3WT3gHpfofL2MNNP6v84sxtXxpqhLBCcDRzqsPBmHhQ6shv4DwwN2tRlzsUxtb3G9M3763rbXKDg==",
-      "path": "system.security.accesscontrol/4.7.0",
-      "hashPath": "system.security.accesscontrol.4.7.0.nupkg.sha512"
+      "sha512": "sha512-dagJ1mHZO3Ani8GH0PHpPEe/oYO+rVdbQjvjJkBRNQkX4t0r1iaeGn8+/ybkSLEan3/slM0t59SVdHzuHf2jmw==",
+      "path": "system.security.accesscontrol/5.0.0",
+      "hashPath": "system.security.accesscontrol.5.0.0.nupkg.sha512"
     },
     "System.Security.Cryptography.Pkcs/7.0.2": {
       "type": "package",
@@ -1836,6 +1916,13 @@
       "path": "system.threading.accesscontrol/7.0.1",
       "hashPath": "system.threading.accesscontrol.7.0.1.nupkg.sha512"
     },
+    "System.ValueTuple/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ==",
+      "path": "system.valuetuple/4.5.0",
+      "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
+    },
     "System.Web.Services.Description/4.9.0": {
       "type": "package",
       "serviceable": true,
@@ -1849,6 +1936,41 @@
       "sha512": "sha512-bR4qdCmssMMbo9Fatci49An5B1UaVJZHKNq70PRgzoLYIlitb8Tj7ns/Xt5Pz1CkERiTjcVBDU2y1AVrPBYkaw==",
       "path": "system.windows.extensions/7.0.0",
       "hashPath": "system.windows.extensions.7.0.0.nupkg.sha512"
+    },
+    "Vanara.Core/4.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nsHkzUXb7Eb0O5iay38Uhqn0eYv4yUPwneZXzlRxyjrw9ySFZz8h1bfAaNKWAaCSqdmcj80wG8rynBHsF6Exyw==",
+      "path": "vanara.core/4.1.3",
+      "hashPath": "vanara.core.4.1.3.nupkg.sha512"
+    },
+    "Vanara.PInvoke.Gdi32/4.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a7qaHeZX6C08t1nQdu40/rXPd3vPSdX88Qbvd76vSkmBizdDNDpRSSGlBzyK5frxVlzvyzoMrv70uwgEG594xw==",
+      "path": "vanara.pinvoke.gdi32/4.1.3",
+      "hashPath": "vanara.pinvoke.gdi32.4.1.3.nupkg.sha512"
+    },
+    "Vanara.PInvoke.Kernel32/4.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sv0aVmFJRSBUq/nIdB66JaDBpUlB1tepmuInlnJv+21uqhJrEIrF77DfFAKjjuAbAUeNoCL6OVcNVPs2Tg0vBQ==",
+      "path": "vanara.pinvoke.kernel32/4.1.3",
+      "hashPath": "vanara.pinvoke.kernel32.4.1.3.nupkg.sha512"
+    },
+    "Vanara.PInvoke.Shared/4.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iROx+wXrbSyZ+zwxfUjRyo+67VZpF8PwqY/9H7fuMjyiL0squeHilHaeawt0SQgNbYDl2DntKjDfVYd/ua0GkQ==",
+      "path": "vanara.pinvoke.shared/4.1.3",
+      "hashPath": "vanara.pinvoke.shared.4.1.3.nupkg.sha512"
+    },
+    "Vanara.PInvoke.User32/4.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ov9kbbV7UDLXrHet296pRVQGWrUN3lVzXaGio4IBICZFcCqT+kMpBUTIsfXTRcArfQCqGv0hjiesZ5MaW6B1Hg==",
+      "path": "vanara.pinvoke.user32/4.1.3",
+      "hashPath": "vanara.pinvoke.user32.4.1.3.nupkg.sha512"
     }
   }
 }

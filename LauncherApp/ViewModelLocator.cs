@@ -36,6 +36,7 @@ public class ViewModelLocator
         
         services.AddSingleton<IWindowService, WindowService>();
         services.AddSingleton<IStartupService, StartupService>();
+        services.AddSingleton<ISystemNotificationServiceNotificationService, SystemNotificationServiceNotificationService>();
         
         services.AddSingleton<PageServices>();
         services.AddSingleton<INavigationService, NavigationService>();

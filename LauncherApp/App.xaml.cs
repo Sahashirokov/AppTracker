@@ -24,6 +24,7 @@ namespace LauncherApp
             try
             {
                 ViewModelLocator.Init();
+              
             }
             catch (Exception ex)
             {
