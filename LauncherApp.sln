@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherApp", "LauncherApp\LauncherApp.csproj", "{D1FD6788-65B3-4E1F-95C3-86B97A94A045}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTracker", "AppTracker\AppTracker.csproj", "{D1FD6788-65B3-4E1F-95C3-86B97A94A045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

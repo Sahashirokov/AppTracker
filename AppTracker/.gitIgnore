@@ -1,0 +1,7 @@
+﻿AppTrackerDB.db
+AppTrackerDB.db-wal
+AppTrackerDB.db-shm
+.idea/
+.idea.AppTracker/
+.vs/
+.bin/
