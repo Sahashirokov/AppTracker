@@ -8,6 +8,7 @@
         <UseWindowsForms>true</UseWindowsForms>
         <UseWPF>true</UseWPF>
         <ApplicationIcon>assets/AppTrackerIcon.ico</ApplicationIcon>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
 <!--        <ApplicationManifest>app.manifest</ApplicationManifest>-->
      
     </PropertyGroup>
